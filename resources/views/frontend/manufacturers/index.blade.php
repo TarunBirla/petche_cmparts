@@ -16,7 +16,7 @@
         </div>
 
         <div class="text-xs text-sky-200 bg-sky-800/60 px-4 py-2 rounded-xl border border-sky-700">
-            Total Brands: <strong class="text-white text-base ml-1">{{ $manufacturers->count() }}</strong>
+            Total Brands: <strong class="text-white text-base ml-1">{{ $manufacturers->total() }}</strong>
         </div>
     </div>
 </div>
@@ -27,17 +27,6 @@
         @foreach($manufacturers as $manuf)
             <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-xl hover:border-sky-300 transition duration-300 flex flex-col justify-between items-center text-center">
                 <div class="w-full flex flex-col items-center">
-                    <!-- Brand Logo Container -->
-                    <div class="h-28 w-full bg-slate-50 rounded-xl overflow-hidden mb-4 border border-slate-100 flex items-center justify-center p-3">
-                        @if($manuf->logo && file_exists(public_path($manuf->logo)))
-                            <img src="{{ asset($manuf->logo) }}" alt="{{ $manuf->name }}" class="h-full w-full object-contain">
-                        @else
-                            <div class="w-16 h-16 bg-sky-100 text-sky-700 font-extrabold rounded-full flex items-center justify-center text-2xl shadow-inner">
-                                {{ substr($manuf->name, 0, 1) }}
-                            </div>
-                        @endif
-                    </div>
-
                     <h2 class="font-bold text-lg text-slate-900 hover:text-sky-600 transition mb-1">{{ $manuf->name }}</h2>
                     <span class="inline-block bg-sky-50 text-sky-800 text-xs font-semibold px-3 py-1 rounded-full border border-sky-200 mb-4">
                         {{ $manuf->products_count }} Available Products
@@ -50,6 +39,11 @@
                 </a>
             </div>
         @endforeach
+    </div>
+
+    <!-- Pagination Links (8 items per page) -->
+    <div class="mt-10 flex justify-center">
+        {{ $manufacturers->links() }}
     </div>
 </div>
 

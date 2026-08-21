@@ -16,7 +16,7 @@
         </div>
 
         <div class="text-xs text-sky-200 bg-sky-800/60 px-4 py-2 rounded-xl border border-sky-700">
-            Total Categories: <strong class="text-white text-base ml-1">{{ $categories->count() }}</strong>
+            Total Categories: <strong class="text-white text-base ml-1">{{ $categories->total() }}</strong>
         </div>
     </div>
 </div>
@@ -28,14 +28,6 @@
             @php $catImg = $cat->image ? asset($cat->image) : asset('images/logo.png'); @endphp
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-sky-300 transition duration-300 overflow-hidden flex flex-col justify-between">
                 <div>
-                    <!-- Category Image Banner -->
-                    <a href="{{ route('products.index', ['category' => $cat->slug]) }}" class="block relative h-52 bg-slate-50 overflow-hidden border-b border-slate-100 group">
-                        <img src="{{ $catImg }}" alt="{{ $cat->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="absolute top-3 right-3 bg-sky-900/80 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full shadow">
-                            {{ $cat->products_count }} Products
-                        </span>
-                    </a>
-
                     <div class="p-6">
                         <h2 class="font-bold text-xl text-slate-900 hover:text-sky-600 transition mb-3">
                             <a href="{{ route('products.index', ['category' => $cat->slug]) }}">{{ $cat->name }}</a>
@@ -67,6 +59,11 @@
                 </div>
             </div>
         @endforeach
+    </div>
+
+    <!-- Pagination Links (6 items per page) -->
+    <div class="mt-10 flex justify-center">
+        {{ $categories->links() }}
     </div>
 </div>
 

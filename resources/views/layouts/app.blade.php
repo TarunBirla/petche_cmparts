@@ -9,6 +9,9 @@
     <!-- Favicon Icon -->
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
 
+    <!-- Swiper CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -39,15 +42,37 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Swiper JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
     <style>
         body { font-family: 'Inter', sans-serif; }
         [x-cloak] { display: none !important; }
+
+        /* Swiper Horizontal Flex Fallback Fix */
+        .swiper {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+        .swiper-wrapper {
+            display: flex !important;
+            flex-direction: row !important;
+            transition-property: transform;
+            box-sizing: content-box;
+            width: 100%;
+        }
+        .swiper-slide {
+            flex-shrink: 0 !important;
+            position: relative;
+            transition-property: transform;
+        }
     </style>
     @stack('styles')
 </head>
 <body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
 
-    
+   
 
     <!-- Main Navigation Header -->
     <header class="bg-white shadow-sm sticky top-0 z-40">

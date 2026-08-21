@@ -43,7 +43,7 @@ class ProductController extends Controller
             });
         }
 
-        $products = $query->latest()->paginate(12)->withQueryString();
+        $products = $query->latest()->paginate(6)->withQueryString();
         $categories = Category::where('is_active', true)->with('subCategories')->get();
         $manufacturers = Manufacturer::where('is_active', true)->get();
 
