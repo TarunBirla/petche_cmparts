@@ -83,7 +83,7 @@
                     <!-- Stock & Price Box -->
                     <div class="flex items-baseline gap-4 mb-6 border-y border-slate-100 py-4">
                         <div>
-                            <span class="text-xs text-slate-400 block font-medium">B2B Unit Price:</span>
+                            <span class="text-xs text-slate-400 block font-medium">Petchemparts Unit Price:</span>
                             <span class="text-3xl font-extrabold text-sky-900">£{{ number_format($product->price, 2) }}</span>
                         </div>
 

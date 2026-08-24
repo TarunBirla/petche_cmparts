@@ -59,7 +59,7 @@
 
             <div class="bg-sky-900 text-white p-6 rounded-2xl shadow-lg border border-sky-800 space-y-3">
                 <h4 class="font-bold text-sm text-sky-200 flex items-center gap-2">
-                    <i class="fa-solid fa-shield-halved"></i> Global B2B Spare Sourcing
+                    <i class="fa-solid fa-shield-halved"></i> Global Petchemparts Spare Sourcing
                 </h4>
                 <p class="text-xs text-sky-100 leading-relaxed">
                     Spanning more than 500 brands from UK, Europe, and USA. Fast turnaround and end-to-end global shipping.

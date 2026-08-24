@@ -5349,12 +5349,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "6638cfe00907b2b980b749fcf2cd4cd6b2b1396e"
+                "reference": "6638cfe00907Petchemparts980b749fcf2cd4cd6Petchemparts1396e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/6638cfe00907b2b980b749fcf2cd4cd6b2b1396e",
-                "reference": "6638cfe00907b2b980b749fcf2cd4cd6b2b1396e",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/6638cfe00907Petchemparts980b749fcf2cd4cd6Petchemparts1396e",
+                "reference": "6638cfe00907Petchemparts980b749fcf2cd4cd6Petchemparts1396e",
                 "shasum": ""
             },
             "require": {

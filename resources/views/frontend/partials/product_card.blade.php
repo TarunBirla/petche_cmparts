@@ -6,9 +6,9 @@
 <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl hover:border-sky-300 transition-all duration-300 flex flex-col justify-between h-full group">
     <div class="p-4">
         <!-- Image Box -->
-        <div class="relative h-44 w-full bg-slate-50 rounded-xl overflow-hidden mb-3 border border-slate-100 flex items-center justify-center p-3">
+        <div class="relative h-44 w-full bg-[#13A1F3] rounded-xl overflow-hidden mb-3 border border-slate-100 flex items-center justify-center p-3">
             <img src="{{ $img }}" alt="{{ $prod->name }}" class="h-full w-full object-contain group-hover:scale-105 transition-transform duration-300">
-            <span class="absolute top-2.5 right-2.5 bg-sky-700/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-sm">
+            <span class="absolute top-2.5 right-2.5 bg-[#13A1F3]/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-sm">
                 {{ $prod->manufacturer->name ?? 'Industrial' }}
             </span>
         </div>
@@ -35,13 +35,13 @@
     </div>
 
     <!-- Bottom Price & Action Row -->
-    <div class="px-4 pb-4 pt-3 border-t border-slate-100 flex items-center justify-between mt-auto bg-slate-50/50">
+    <div class="px-4 pb-4 pt-3  flex items-center justify-between mt-auto ">
         <div>
             <span class="text-[10px] text-slate-400 font-medium block uppercase tracking-wider">Unit Price</span>
             <span class="text-sm sm:text-base font-extrabold text-sky-950">£{{ number_format($prod->price, 2) }}</span>
         </div>
 
-        <button onclick="addToRequest({{ $prod->id }}, '{{ addslashes($prod->name) }}', '{{ addslashes($prod->part_number) }}', {{ $prod->price }}, '{{ $img }}', this)" class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 shadow-md shadow-sky-200">
+        <button onclick="addToRequest({{ $prod->id }}, '{{ addslashes($prod->name) }}', '{{ addslashes($prod->part_number) }}', {{ $prod->price }}, '{{ $img }}', this)" class="bg-[#13A1F3] hover:bg-[#13A1F3] text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 shadow-md shadow-sky-200">
             <i class="fa-solid fa-plus text-[10px]"></i>
             <span>Add Request</span>
         </button>

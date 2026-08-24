@@ -15,7 +15,7 @@
         <div class="text-center mb-8">
             <img class="h-12 w-auto mx-auto mb-3" src="{{ asset('images/logo.png') }}" alt="Petchemparts Logo">
             <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Admin Portal</h1>
-            <p class="text-xs text-slate-500 mt-1">Sign in to manage B2B Petrochemical catalog</p>
+            <p class="text-xs text-slate-500 mt-1">Sign in to manage Petchemparts Petrochemical catalog</p>
         </div>
 
         @if($errors->any())

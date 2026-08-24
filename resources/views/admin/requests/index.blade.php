@@ -6,7 +6,7 @@
 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
     <div>
         <h3 class="text-lg font-bold text-slate-900">Product Quote Requests</h3>
-        <p class="text-xs text-slate-500">View incoming quotation inquiries submitted by B2B buyers.</p>
+        <p class="text-xs text-slate-500">View incoming quotation inquiries submitted by Petchemparts buyers.</p>
     </div>
 </div>
 

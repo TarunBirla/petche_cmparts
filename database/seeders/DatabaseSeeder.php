@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
             $createdManufacturers[$mName] = $m;
         }
 
-        // 3. New B2B Categories & Sub-Categories
+        // 3. New Petchemparts Categories & Sub-Categories
         $taxonomy = [
             'Electrical & Controls' => [
                 'Ballast', 'Battery', 'Capacitors', 'Circuit Breakers', 
