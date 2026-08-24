@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Petchemparts - Petchemparts Petrochemical & Industrial Parts')</title>
+    <title>@yield('title', 'Petchemparts - Petchemparts Petchemparts & Industrial Parts')</title>
 
     <!-- Favicon Icon -->
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
@@ -173,7 +173,7 @@
                         <img class="h-10 w-auto bg-white p-1 rounded" src="{{ asset('images/logo.png') }}" alt="Petchemparts">
                     </div>
                     <p class="text-slate-400 text-xs leading-relaxed mb-3">
-                        UK's leading Petrochemical, industrial, oil and gas spare parts, consumable & MRO reseller globally.
+                        UK's leading Petchemparts, industrial, oil and gas spare parts, consumable & MRO reseller globally.
                     </p>
                     <div class="text-[11px] text-sky-400 font-semibold">
                         <i class="fa-solid fa-clock mr-1"></i> 7 Days a week: 9:00 am - 7:00 pm

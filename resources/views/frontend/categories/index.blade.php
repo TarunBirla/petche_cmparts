@@ -12,7 +12,7 @@
                 Product Taxonomy
             </span>
             <h1 class="text-3xl sm:text-4xl font-extrabold">All Product Categories</h1>
-            <p class="text-sky-200 text-xs sm:text-sm mt-1">Browse our complete range of industrial equipment, control valves, and petrochemical instrumentation.</p>
+            <p class="text-sky-200 text-xs sm:text-sm mt-1">Browse our complete range of industrial equipment, control valves, and Petchemparts instrumentation.</p>
         </div>
 
         <div class="text-xs text-sky-200 bg-sky-800/60 px-4 py-2 rounded-xl border border-sky-700">

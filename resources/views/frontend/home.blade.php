@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Petchemparts - Petchemparts Petrochemical & Industrial Parts Reseller')
+@section('title', 'Petchemparts - Petchemparts Petchemparts & Industrial Parts Reseller')
 
 @section('content')
 
@@ -9,7 +9,7 @@
     <div class="max-w-5xl mx-auto text-center space-y-2">
         
         <h1 class="text-2xl sm:text-5xl lg:text-5xl font-extrabold tracking-tight leading-tight">
-            High-Performance Petrochemical & Industrial Equipment Spares</span>
+            High-Performance Petchemparts & Industrial Equipment Spares</span>
         </h1>
         <p class=" text-[16px] sm:text-base max-w-3xl mx-auto leading-relaxed">
             Sourcing over 500+ top European and USA brands. Find control valves, transmitters, flow meters, actuators, and MRO spare parts with direct Petchemparts quotation.

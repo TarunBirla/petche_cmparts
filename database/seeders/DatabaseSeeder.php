@@ -162,7 +162,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'siemens-simotics-sd-severe-duty-industrial-motor-15kw',
             'part_number' => 'SIE-SD-15KW',
             'model_number' => '1LE1501-1DB43-4AA4',
-            'summary' => 'Cast iron housing high efficiency IE3 motor for harsh petrochemical environments.',
+            'summary' => 'Cast iron housing high efficiency IE3 motor for harsh Petchemparts environments.',
             'description' => 'Siemens SIMOTICS SD motors are designed for harsh operation in chemical, oil, gas and offshore applications with high durability.',
             'quantity' => 30,
             'price' => 1890.00,
@@ -228,7 +228,7 @@ class DatabaseSeeder extends Seeder
             'content' => <<<EOT
 <h3>About Petchem Parts</h3>
 <ol>
-    <li>UK's leading Petrochemical, industrial, oil and gas spare parts, consumable &amp; MRO reseller globally.</li>
+    <li>UK's leading Petchemparts, industrial, oil and gas spare parts, consumable &amp; MRO reseller globally.</li>
     <li>Large number of spare parts and accessories, spanning more than 500 brands/manufacturers from Europe and USA.</li>
     <li>End to end shipping globally.</li>
     <li>Minimize the unforeseen costs and disruption the breakdown of an equipment can cause to your plant.</li>

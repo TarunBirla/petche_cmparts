@@ -11,7 +11,7 @@
             Company Information
         </span>
         <h1 class="text-3xl sm:text-4xl font-extrabold">{{ $page->title }}</h1>
-        <p class="text-sky-200 text-xs sm:text-sm mt-1">Petchemparts - Premier Petrochemical & Industrial Equipment Supplier</p>
+        <p class="text-sky-200 text-xs sm:text-sm mt-1">Petchemparts - Premier Petchemparts & Industrial Equipment Supplier</p>
     </div>
 </div>
 
