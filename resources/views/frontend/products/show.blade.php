@@ -115,7 +115,7 @@
                             <button type="button" onclick="adjustProductQty(1)" class="w-10 h-10 bg-white hover:bg-slate-200 text-slate-700 font-bold rounded-lg transition">+</button>
                         </div>
 
-                        <button id="detail-add-request-btn" onclick="addCurrentProductToRequest()" class="flex-grow bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm py-3.5 px-6 rounded-xl shadow-lg shadow-sky-200 transition flex items-center justify-center gap-2">
+                        <button id="detail-add-request-btn" onclick="addCurrentProductToRequest()" class="flex-grow bg-[var(--primary-dark)] hover:bg-sky-700 text-white font-bold text-sm py-3.5 px-6 rounded-xl shadow-lg shadow-sky-200 transition flex items-center justify-center gap-2">
                             <i class="fa-solid fa-plus text-base"></i>
                             <span>Add to Request List</span>
                         </button>
@@ -208,10 +208,10 @@
 
         const btn = document.getElementById('detail-add-request-btn');
         if (btn) {
-            btn.className = btn.className.replace('bg-sky-600 hover:bg-sky-700', 'bg-emerald-600 hover:bg-emerald-700');
+            btn.className = btn.className.replace('bg-[var(--primary-dark)] hover:bg-sky-700', 'bg-emerald-600 hover:bg-emerald-700');
             btn.innerHTML = `<i class="fa-solid fa-check text-base"></i> <span>Added to Request List</span>`;
             setTimeout(() => {
-                btn.className = btn.className.replace('bg-emerald-600 hover:bg-emerald-700', 'bg-sky-600 hover:bg-sky-700');
+                btn.className = btn.className.replace('bg-emerald-600 hover:bg-emerald-700', 'bg-[var(--primary-dark)] hover:bg-sky-700');
                 btn.innerHTML = `<i class="fa-solid fa-plus text-base"></i> <span>Add to Request List</span>`;
             }, 3000);
         }

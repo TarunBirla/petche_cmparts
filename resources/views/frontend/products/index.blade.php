@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- Header Banner -->
-<div class="bg-[#13A1F3] text-white py-10 px-4">
+<div class="bg-[var(--primary-dark)] text-white py-10 px-4">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <div>
             <h1 class="text-2xl sm:text-3xl font-extrabold">All Industrial Products</h1>
@@ -26,9 +26,9 @@
             <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm sticky top-28 space-y-6">
                 <div class="flex justify-between items-center border-b pb-3">
                     <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
-                        <i class="fa-solid fa-filter text-sky-600"></i> Filter Products
+                        <i class="fa-solid fa-filter text-[var(--primary-dark)]"></i> Filter Products
                     </h3>
-                    <a href="{{ route('products.index') }}" class="text-xs text-sky-600 hover:underline font-medium">Reset All</a>
+                    <a href="{{ route('products.index') }}" class="text-xs text-[var(--primary-dark)] hover:underline font-medium">Reset All</a>
                 </div>
 
                 <form action="{{ route('products.index') }}" method="GET" id="catalog-filter-form">
@@ -83,7 +83,7 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="w-full bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold py-2.5 rounded-lg shadow-sm transition">
+                    <button type="submit" class="w-full bg-[var(--primary-dark)] hover:bg-[var(--primary-dark)] text-white text-xs font-bold py-2.5 rounded-lg shadow-sm transition">
                         Apply Filters
                     </button>
                 </form>
@@ -116,7 +116,7 @@
                         </span>
                     @endif
 
-                    <a href="{{ route('products.index') }}" class="text-sky-600 hover:text-sky-800 font-bold ml-auto">Clear Filters</a>
+                    <a href="{{ route('products.index') }}" class="text-[var(--primary-dark)] hover:text-sky-800 font-bold ml-auto">Clear Filters</a>
                 </div>
             @endif
 
@@ -131,16 +131,16 @@
                             <div class="p-4">
                                 <div class="relative h-44 w-full bg-slate-50 rounded-xl overflow-hidden mb-3 border border-slate-100 flex items-center justify-center">
                                     <img src="{{ $img }}" alt="{{ $prod->name }}" class="h-full w-full object-contain p-2">
-                                    <span class="absolute top-2 right-2 bg-sky-700 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                                    <span class="absolute top-2 right-2 bg-[var(--primary-dark)] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
                                         {{ $prod->manufacturer->name ?? 'Industrial' }}
                                     </span>
                                 </div>
 
-                                <div class="text-[10px] font-semibold text-sky-600 uppercase tracking-wide mb-1">
+                                <div class="text-[10px] font-semibold text-[var(--primary-dark)] uppercase tracking-wide mb-1">
                                     {{ $prod->category->name ?? 'Equipment' }}
                                 </div>
                                 
-                                <h3 class="font-bold text-sm text-slate-900 line-clamp-2 hover:text-sky-600 transition mb-2">
+                                <h3 class="font-bold text-sm text-slate-900 line-clamp-2 hover:text-[var(--primary-dark)] transition mb-2">
                                     <a href="{{ route('products.show', $prod->slug) }}">{{ $prod->name }}</a>
                                 </h3>
 
@@ -160,7 +160,7 @@
                                     <a href="{{ route('products.show', $prod->slug) }}" class="bg-slate-100 hover:bg-slate-200 text-slate-700 p-2 rounded-lg text-xs" title="View Details">
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
-                                    <button onclick="addToRequest({{ $prod->id }}, '{{ addslashes($prod->name) }}', '{{ addslashes($prod->part_number) }}', {{ $prod->price }}, '{{ $img }}', this)" class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold px-3 py-2 rounded-lg transition flex items-center gap-1 shadow-sm shadow-sky-200">
+                                    <button onclick="addToRequest({{ $prod->id }}, '{{ addslashes($prod->name) }}', '{{ addslashes($prod->part_number) }}', {{ $prod->price }}, '{{ $img }}', this)" class="bg-[var(--primary-dark)] hover:bg-[var(--primary-dark)] text-white text-xs font-semibold px-3 py-2 rounded-lg transition flex items-center gap-1 shadow-sm shadow-sky-200">
                                         <i class="fa-solid fa-plus"></i>
                                         <span>Request</span>
                                     </button>
@@ -176,12 +176,12 @@
                 </div>
             @else
                 <div class="bg-white rounded-2xl border border-slate-200 p-12 text-center">
-                    <div class="w-16 h-16 bg-sky-50 text-sky-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <div class="w-16 h-16 bg-sky-50 text-[var(--primary-dark)] rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                     <h3 class="font-bold text-slate-800 text-lg">No Products Found</h3>
                     <p class="text-xs text-slate-500 mt-1 max-w-sm mx-auto">We couldn't find any products matching your search criteria. Try adjusting your filters or search keywords.</p>
-                    <a href="{{ route('products.index') }}" class="inline-block mt-4 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Clear Search</a>
+                    <a href="{{ route('products.index') }}" class="inline-block mt-4 bg-[var(--primary-dark)] hover:bg-[var(--primary-dark)] text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Clear Search</a>
                 </div>
             @endif
 

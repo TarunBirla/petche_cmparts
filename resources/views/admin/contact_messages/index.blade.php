@@ -27,7 +27,7 @@
                     <td class="p-4">
                         <div class="font-bold text-slate-900 text-sm flex items-center gap-2">
                             @if(!$msg->is_read)
-                                <span class="w-2 h-2 rounded-full bg-sky-600" title="Unread"></span>
+                                <span class="w-2 h-2 rounded-full bg-[var(--primary-dark)]" title="Unread"></span>
                             @endif
                             <span>{{ $msg->name }}</span>
                         </div>
@@ -40,7 +40,7 @@
                     <td class="p-4 text-slate-500 text-[11px]">{{ $msg->created_at->format('M d, Y - H:i') }}</td>
                     <td class="p-4 text-center">
                         <div class="inline-flex gap-2">
-                            <a href="{{ route('admin.contact-messages.show', $msg->id) }}" class="bg-sky-600 hover:bg-sky-700 text-white px-3 py-1.5 rounded-lg font-bold transition">View Message</a>
+                            <a href="{{ route('admin.contact-messages.show', $msg->id) }}" class="bg-[var(--primary-dark)] hover:bg-sky-700 text-white px-3 py-1.5 rounded-lg font-bold transition">View Message</a>
                             <form action="{{ route('admin.contact-messages.destroy', $msg->id) }}" method="POST" onsubmit="return confirm('Delete this contact message?')">
                                 @csrf
                                 @method('DELETE')

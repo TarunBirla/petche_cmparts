@@ -46,7 +46,7 @@
     </div>
 
     <div class="pt-4 border-t flex justify-end">
-        <a href="mailto:{{ $contactMessage->email }}?subject=RE:%20{{ urlencode($contactMessage->subject) }}" class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold px-6 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
+        <a href="mailto:{{ $contactMessage->email }}?subject=RE:%20{{ urlencode($contactMessage->subject) }}" class="bg-[var(--primary-dark)] hover:bg-sky-700 text-white text-xs font-bold px-6 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
             <i class="fa-solid fa-reply"></i>
             <span>Reply via Email</span>
         </a>

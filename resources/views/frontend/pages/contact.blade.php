@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- Header Banner -->
-<div class="bg-[#13A1F3] text-white py-12 px-4">
+<div class="bg-[var(--primary-dark)] text-white py-12 px-4">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <div>
             <span class="inline-block bg-sky-500/20 text-sky-200 border border-sky-400/30 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
@@ -57,7 +57,7 @@
                 </div>
             </div>
 
-            <div class="bg-[#13A1F3] text-white p-6 rounded-2xl shadow-lg border border-sky-800 space-y-3">
+            <div class="bg-[var(--primary-dark)] text-white p-6 rounded-2xl shadow-lg border border-sky-800 space-y-3">
                 <h4 class="font-bold text-sm text-sky-200 flex items-center gap-2">
                     <i class="fa-solid fa-shield-halved"></i> Global Petchemparts Spare Sourcing
                 </h4>
@@ -105,7 +105,7 @@
                     <textarea name="message" rows="5" required placeholder="Detail your spare parts request, model numbers, or plant specifications..." class="w-full text-xs p-3 border rounded-lg border-slate-300 focus:ring-2 focus:ring-sky-500"></textarea>
                 </div>
 
-                <button type="submit" class="bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs px-8 py-3 rounded-xl shadow-md transition flex items-center gap-2">
+                <button type="submit" class="bg-[var(--primary-dark)] hover:bg-sky-700 text-white font-bold text-xs px-8 py-3 rounded-xl shadow-md transition flex items-center gap-2">
                     <span>Send Message</span>
                     <i class="fa-solid fa-paper-plane"></i>
                 </button>

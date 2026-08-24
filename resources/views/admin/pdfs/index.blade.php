@@ -8,7 +8,7 @@
         <h3 class="text-lg font-bold text-slate-900">PDF Technical Documents Library</h3>
         <p class="text-xs text-slate-500">Upload datasheets, catalogs, and technical manuals to attach optional download links to products.</p>
     </div>
-    <a href="{{ route('admin.pdfs.create') }}" class="bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
+    <a href="{{ route('admin.pdfs.create') }}" class="bg-[var(--primary-dark)] hover:bg-sky-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
         <i class="fa-solid fa-cloud-arrow-up"></i>
         <span>Upload PDF Document</span>
     </a>

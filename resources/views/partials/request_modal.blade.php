@@ -27,7 +27,7 @@
                     </div>
                     <h4 class="font-semibold text-slate-700 text-sm">Your Request List is Empty</h4>
                     <p class="text-xs text-slate-500 mt-1 max-w-sm mx-auto">Browse our industrial catalog and click "Add to Request" on any product to build your quote inquiry.</p>
-                    <a href="{{ route('products.index') }}" onclick="closeRequestModal()" class="inline-block mt-3 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Browse Products</a>
+                    <a href="{{ route('products.index') }}" onclick="closeRequestModal()" class="inline-block mt-3 bg-[var(--primary-dark)] hover:bg-sky-700 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Browse Products</a>
                 </div>
 
                 <!-- Products Table & Form Container -->
@@ -100,7 +100,7 @@
 
                             <div class="flex gap-2">
                                 <button type="button" onclick="closeRequestModal()" class="px-4 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition">Close</button>
-                                <button type="submit" id="submit-request-btn" class="px-5 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-lg shadow-md shadow-sky-200 transition flex items-center gap-2">
+                                <button type="submit" id="submit-request-btn" class="px-5 py-2 bg-[var(--primary-dark)] hover:bg-sky-700 text-white text-xs font-bold rounded-lg shadow-md shadow-sky-200 transition flex items-center gap-2">
                                     <span>Submit Request</span>
                                     <i class="fa-solid fa-paper-plane"></i>
                                 </button>

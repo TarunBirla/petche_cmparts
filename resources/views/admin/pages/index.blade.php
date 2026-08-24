@@ -8,7 +8,7 @@
         <h3 class="text-lg font-bold text-slate-900">CMS Pages Directory</h3>
         <p class="text-xs text-slate-500">Manage site content pages such as About Us, Delivery, Terms & Conditions.</p>
     </div>
-    <a href="{{ route('admin.pages.create') }}" class="bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
+    <a href="{{ route('admin.pages.create') }}" class="bg-[var(--primary-dark)] hover:bg-sky-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
         <i class="fa-solid fa-plus"></i>
         <span>Add New Page</span>
     </a>

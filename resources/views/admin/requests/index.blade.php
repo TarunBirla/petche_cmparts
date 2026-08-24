@@ -72,7 +72,7 @@
                     <td class="p-4 text-slate-500 text-[11px]">{{ $req->created_at->format('M d, Y - H:i') }}</td>
                     <td class="p-4 text-center">
                         <div class="inline-flex gap-2">
-                            <a href="{{ route('admin.requests.show', $req->id) }}" class="bg-sky-600 hover:bg-sky-700 text-white px-3 py-1.5 rounded-lg font-bold transition">View Details</a>
+                            <a href="{{ route('admin.requests.show', $req->id) }}" class="bg-[var(--primary-dark)] hover:bg-sky-700 text-white px-3 py-1.5 rounded-lg font-bold transition">View Details</a>
                             <form action="{{ route('admin.requests.destroy', $req->id) }}" method="POST" onsubmit="return confirm('Delete this request entry?')">
                                 @csrf
                                 @method('DELETE')

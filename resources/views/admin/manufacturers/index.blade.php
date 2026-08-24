@@ -8,7 +8,7 @@
         <h3 class="text-lg font-bold text-slate-900">Manufacturers Directory</h3>
         <p class="text-xs text-slate-500">Add, edit, or delete equipment manufacturers & brand logos.</p>
     </div>
-    <a href="{{ route('admin.manufacturers.create') }}" class="bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
+    <a href="{{ route('admin.manufacturers.create') }}" class="bg-[var(--primary-dark)] hover:bg-sky-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
         <i class="fa-solid fa-plus"></i>
         <span>Add Manufacturer</span>
     </a>

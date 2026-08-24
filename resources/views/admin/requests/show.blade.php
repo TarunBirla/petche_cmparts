@@ -113,7 +113,7 @@
         </div>
 
         <div class="flex justify-end gap-3">
-            <a href="mailto:{{ $productRequest->customer_email }}?subject=Petchemparts%20Quote%20Request%20%23{{ $productRequest->request_number }}" class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
+            <a href="mailto:{{ $productRequest->customer_email }}?subject=Petchemparts%20Quote%20Request%20%23{{ $productRequest->request_number }}" class="bg-[var(--primary-dark)] hover:bg-sky-700 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
                 <i class="fa-solid fa-reply"></i>
                 <span>Reply to Customer via Email</span>
             </a>

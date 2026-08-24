@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- Header Banner -->
-<div class="bg-[#13A1F3] text-white py-12 px-4">
+<div class="bg-[var(--primary-dark)] text-white py-12 px-4">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <div>
             <span class="inline-block bg-sky-500/20 text-sky-200 border border-sky-400/30 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
@@ -33,7 +33,7 @@
                     </span>
                 </div>
 
-                <a href="{{ route('products.index', ['manufacturer' => $manuf->slug]) }}" class="w-full bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold py-2.5 rounded-xl text-center transition shadow-sm shadow-sky-200 flex items-center justify-center gap-2">
+                <a href="{{ route('products.index', ['manufacturer' => $manuf->slug]) }}" class="w-full bg-[var(--primary-dark)] hover:bg-sky-700 text-white text-xs font-bold py-2.5 rounded-xl text-center transition shadow-sm shadow-sky-200 flex items-center justify-center gap-2">
                     <span>View Brand Products</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>

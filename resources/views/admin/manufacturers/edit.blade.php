@@ -31,7 +31,7 @@
         </div>
 
         <div class="pt-4 border-t flex gap-3">
-            <button type="submit" class="bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs px-6 py-2.5 rounded-xl transition">Update Manufacturer</button>
+            <button type="submit" class="bg-[var(--primary-dark)] hover:bg-sky-700 text-white font-bold text-xs px-6 py-2.5 rounded-xl transition">Update Manufacturer</button>
             <a href="{{ route('admin.manufacturers.index') }}" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs px-4 py-2.5 rounded-xl transition">Cancel</a>
         </div>
     </form>

@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- Header Banner -->
-<div class="bg-[#13A1F3] text-white py-12 px-4">
+<div class="bg-[var(--primary-dark)] text-white py-12 px-4">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <div>
             <span class="inline-block bg-sky-500/20 text-sky-200 border border-sky-400/30 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
@@ -39,7 +39,7 @@
                                 <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-2">Sub-categories:</span>
                                 <div class="flex flex-wrap gap-2">
                                     @foreach($cat->subCategories as $sub)
-                                        <a href="{{ route('products.index', ['category' => $cat->slug, 'subcategory' => $sub->slug]) }}" class="bg-sky-50 hover:bg-sky-600 hover:text-white text-sky-800 border border-sky-200 text-xs px-2.5 py-1 rounded-lg transition font-medium">
+                                        <a href="{{ route('products.index', ['category' => $cat->slug, 'subcategory' => $sub->slug]) }}" class="bg-sky-50 hover:bg-[var(--primary-dark)] hover:text-white text-sky-800 border border-sky-200 text-xs px-2.5 py-1 rounded-lg transition font-medium">
                                             {{ $sub->name }}
                                         </a>
                                     @endforeach
@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
-                    <a href="{{ route('products.index', ['category' => $cat->slug]) }}" class="w-full bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold py-2.5 rounded-xl text-center transition shadow-sm shadow-sky-200 flex items-center justify-center gap-2">
+                    <a href="{{ route('products.index', ['category' => $cat->slug]) }}" class="w-full bg-[var(--primary-dark)] hover:bg-sky-700 text-white text-xs font-bold py-2.5 rounded-xl text-center transition shadow-sm shadow-sky-200 flex items-center justify-center gap-2">
                         <span>Explore Category Products</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
