@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- Header Banner -->
-<div class="bg-gradient-to-r from-sky-900 via-sky-800 to-slate-900 text-white py-12 px-4">
+<div class="bg-[#13A1F3] text-white py-12 px-4">
     <div class="max-w-5xl mx-auto text-center sm:text-left">
         <span class="inline-block bg-sky-500/20 text-sky-200 border border-sky-400/30 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
             Company Information
