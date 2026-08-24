@@ -93,23 +93,7 @@
 </head>
 <body class="bg-[var(--bg)] text-[var(--text)] flex flex-col min-h-screen">
 
-    <!-- Top Info Header -->
-    <div class="bg-[var(--primary-dark)] text-white/90 text-xs py-2 px-4 border-b border-white/10">
-        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-            <div class="flex flex-wrap items-center space-x-4 sm:space-x-6 text-[11px] sm:text-xs">
-                <span><i class="fa-solid fa-phone text-accent mr-1.5"></i> Helpline: <span class="spec-tag font-bold">0044-7891363776</span></span>
-                <span class="hidden sm:inline"><i class="fa-solid fa-envelope text-accent mr-1.5"></i> Sales@petchemparts.com</span>
-                <span class="font-semibold text-white/90"><i class="fa-solid fa-sterling-sign mr-1"></i> GBP (£)</span>
-            </div>
-            <div>
-                @auth
-                    <a href="{{ route('admin.dashboard') }}" class="hover:underline text-accent font-medium text-[11px] sm:text-xs"><i class="fa-solid fa-user-shield mr-1"></i> Admin Panel</a>
-                @else
-                    <a href="{{ route('login') }}" class="hover:underline text-accent font-medium text-[11px] sm:text-xs"><i class="fa-solid fa-lock mr-1"></i> Admin Login</a>
-                @endauth
-            </div>
-        </div>
-    </div>
+   
 
     <!-- Main Navigation Header -->
     <header class="bg-white shadow-sm sticky top-0 z-40 border-b border-token">
