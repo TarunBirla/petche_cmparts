@@ -298,7 +298,7 @@
                 toast.className = 'fixed bottom-5 right-5 bg-amber-600 text-white px-5 py-3.5 rounded-xl shadow-2xl z-50 flex items-center gap-3 transition duration-300 transform translate-y-0 border border-amber-400/40 text-xs font-semibold';
                 toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-amber-200 text-base"></i> ${message}`;
             } else {
-                toast.className = 'fixed bottom-5 right-5 bg-sky-900 text-white px-5 py-3.5 rounded-xl shadow-2xl z-50 flex items-center gap-3 transition duration-300 transform translate-y-0 border border-sky-700 text-xs font-semibold';
+                toast.className = 'fixed bottom-5 right-5 bg-[#13A1F3] text-white px-5 py-3.5 rounded-xl shadow-2xl z-50 flex items-center gap-3 transition duration-300 transform translate-y-0 border border-sky-700 text-xs font-semibold';
                 toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 text-base"></i> ${message}`;
             }
             document.body.appendChild(toast);

@@ -45,7 +45,7 @@
     <aside class="w-64 bg-slate-900 text-slate-300 flex-shrink-0 flex flex-col justify-between border-r border-slate-800">
         <div>
             <!-- Sidebar Header / Logo -->
-            <div class="h-20 bg-sky-900/60 flex items-center px-6 border-b border-slate-800 gap-3">
+            <div class="h-20 bg-[#13A1F3]/60 flex items-center px-6 border-b border-slate-800 gap-3">
                 <img class="h-9 w-auto bg-white p-1 rounded" src="{{ asset('images/logo.png') }}" alt="Petchemparts Logo">
                 <span class="font-extrabold text-white text-base tracking-wide">Admin Panel</span>
             </div>

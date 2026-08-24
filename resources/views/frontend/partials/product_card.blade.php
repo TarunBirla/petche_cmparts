@@ -6,7 +6,7 @@
 <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl hover:border-sky-300 transition-all duration-300 flex flex-col justify-between h-full group">
     <div class="p-4">
         <!-- Image Box -->
-        <div class="relative h-44 w-full bg-[#13A1F3] rounded-xl overflow-hidden mb-3 border border-slate-100 flex items-center justify-center p-3">
+        <div class="relative h-44 w-full  rounded-xl overflow-hidden mb-3 border border-slate-100 flex items-center justify-center p-3">
             <img src="{{ $img }}" alt="{{ $prod->name }}" class="h-full w-full object-contain group-hover:scale-105 transition-transform duration-300">
             <span class="absolute top-2.5 right-2.5 bg-[#13A1F3]/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-sm">
                 {{ $prod->manufacturer->name ?? 'Industrial' }}

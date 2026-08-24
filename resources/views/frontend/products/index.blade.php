@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- Header Banner -->
-<div class="bg-sky-900 text-white py-10 px-4">
+<div class="bg-[#13A1F3] text-white py-10 px-4">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <div>
             <h1 class="text-2xl sm:text-3xl font-extrabold">All Industrial Products</h1>
