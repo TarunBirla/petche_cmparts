@@ -13,7 +13,20 @@ class PageController extends Controller
 {
     public function show($slug)
     {
-        $page = Page::where('slug', $slug)->where('is_active', true)->firstOrFail();
+        $pageQuery = Page::where('is_active', true);
+        
+        if (in_array($slug, ['delivery', 'delivery-and-returns'])) {
+            $pageQuery->whereIn('slug', ['delivery', 'delivery-and-returns']);
+        } else {
+            $pageQuery->where('slug', $slug);
+        }
+        
+        $page = $pageQuery->first();
+
+        if (!$page) {
+            $page = Page::where('is_active', true)->where('title', 'like', "%delivery%")->firstOrFail();
+        }
+
         return view('frontend.pages.show', compact('page'));
     }
 

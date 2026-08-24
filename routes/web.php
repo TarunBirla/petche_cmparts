@@ -31,7 +31,8 @@ Route::post('/request/submit', [FrontRequestController::class, 'store'])->name('
 
 // Frontend CMS & Contact Pages
 Route::get('/about-us', fn() => app(FrontPageController::class)->show('about-us'))->name('about-us');
-Route::get('/delivery-and-returns', fn() => app(FrontPageController::class)->show('delivery'))->name('delivery');
+Route::get('/delivery', fn() => app(FrontPageController::class)->show('delivery'))->name('delivery');
+Route::get('/delivery-and-returns', fn() => app(FrontPageController::class)->show('delivery-and-returns'))->name('delivery-and-returns');
 Route::get('/terms-and-conditions', fn() => app(FrontPageController::class)->show('terms-and-conditions'))->name('terms-and-conditions');
 Route::get('/contact-us', [FrontPageController::class, 'showContact'])->name('contact');
 Route::post('/contact-us', [FrontPageController::class, 'submitContact'])->name('contact.submit');
