@@ -61,6 +61,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('subcategories', SubCategoryController::class);
     Route::resource('pdfs', PdfController::class);
     Route::resource('products', AdminProductController::class);
+    Route::delete('products/{product}/delete-image', [AdminProductController::class, 'deleteImage'])->name('products.delete-image');
     Route::resource('pages', AdminPageController::class);
     Route::resource('contact-messages', AdminContactMessageController::class)->only(['index', 'show', 'destroy']);
     Route::get('ajax/subcategories/{categoryId}', [AdminProductController::class, 'getSubcategories'])->name('products.subcategories');

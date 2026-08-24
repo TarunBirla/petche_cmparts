@@ -125,6 +125,31 @@ class ProductController extends Controller
 
         $imagePaths = $product->images ?? [];
 
+        // 1. If replace_existing is checked, unlink all current images
+        if ($request->has('replace_existing') && $request->replace_existing == '1') {
+            foreach ($imagePaths as $img) {
+                if (file_exists(public_path($img))) {
+                    @unlink(public_path($img));
+                }
+            }
+            $imagePaths = [];
+        } 
+        // 2. Remove specific images selected for removal
+        elseif ($request->has('remove_images') && is_array($request->remove_images)) {
+            $filteredPaths = [];
+            foreach ($imagePaths as $index => $img) {
+                if (in_array((string)$index, $request->remove_images) || in_array($img, $request->remove_images)) {
+                    if (file_exists(public_path($img))) {
+                        @unlink(public_path($img));
+                    }
+                } else {
+                    $filteredPaths[] = $img;
+                }
+            }
+            $imagePaths = array_values($filteredPaths);
+        }
+
+        // 3. Handle newly uploaded images
         if ($request->hasFile('images')) {
             $newImagePaths = [];
             foreach ($request->file('images') as $key => $file) {
@@ -132,7 +157,13 @@ class ProductController extends Controller
                 $file->move(public_path('uploads/products'), $imageName);
                 $newImagePaths[] = 'uploads/products/' . $imageName;
             }
-            $imagePaths = array_merge($imagePaths, $newImagePaths);
+
+            // If set_primary is checked or if no existing images remain, place new images at the beginning
+            if (($request->has('set_primary') && $request->set_primary == '1') || empty($imagePaths)) {
+                $imagePaths = array_merge($newImagePaths, $imagePaths);
+            } else {
+                $imagePaths = array_merge($imagePaths, $newImagePaths);
+            }
         }
 
         $product->update([
@@ -148,11 +179,39 @@ class ProductController extends Controller
             'description' => $request->description,
             'quantity' => $request->quantity,
             'price' => $request->price,
-            'images' => $imagePaths,
+            'images' => count($imagePaths) > 0 ? array_values($imagePaths) : null,
             'is_active' => $request->has('is_active'),
         ]);
 
         return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
+    }
+
+    public function deleteImage(Request $request, Product $product)
+    {
+        $imageIndex = $request->input('image_index');
+        $imagePath = $request->input('image_path');
+
+        $images = $product->images ?? [];
+        $updatedImages = [];
+        $deleted = false;
+
+        foreach ($images as $index => $img) {
+            if (($imageIndex !== null && (int)$imageIndex === $index) || ($imagePath && $imagePath === $img)) {
+                if (file_exists(public_path($img))) {
+                    @unlink(public_path($img));
+                }
+                $deleted = true;
+            } else {
+                $updatedImages[] = $img;
+            }
+        }
+
+        if ($deleted) {
+            $product->update(['images' => count($updatedImages) > 0 ? array_values($updatedImages) : null]);
+            return response()->json(['success' => true, 'message' => 'Image deleted successfully.']);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Image not found.'], 404);
     }
 
     public function destroy(Product $product)

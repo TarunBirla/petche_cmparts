@@ -114,7 +114,7 @@
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-            @foreach($manufacturers->take(12) as $manuf)
+            @foreach($manufacturers->take(6) as $manuf)
                 <a href="{{ route('products.index', ['manufacturer' => $manuf->slug]) }}"
                    class="group relative bg-[var(--bg)] border border-token hover:border-primary rounded-2xl p-5 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
                     <span class="absolute top-0 left-0 right-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>

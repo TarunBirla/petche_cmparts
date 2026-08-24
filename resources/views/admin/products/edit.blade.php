@@ -98,21 +98,53 @@
             <textarea name="description" rows="5" class="w-full text-xs p-3 border rounded-lg border-slate-300">{{ old('description', $product->description) }}</textarea>
         </div>
 
-        <!-- Row 6: Multiple Images -->
-        <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Existing Product Images</label>
-            @if(!empty($product->images))
-                <div class="flex gap-3 mb-3">
-                    @foreach($product->images as $img)
-                        <div class="w-16 h-16 border rounded-lg bg-slate-50 p-1">
-                            <img src="{{ asset($img) }}" alt="Product Image" class="w-full h-full object-contain">
-                        </div>
-                    @endforeach
-                </div>
-            @endif
+        <!-- Row 6: Product Images Management -->
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-4">
+            <div>
+                <label class="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">Existing Product Images</label>
+                @if(!empty($product->images) && count($product->images) > 0)
+                    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3 mb-2" id="existing-images-grid">
+                        @foreach($product->images as $index => $img)
+                            <div class="relative group border rounded-xl bg-white p-2 text-center shadow-sm" id="image-card-{{ $index }}">
+                                @if($index === 0)
+                                    <span class="absolute top-1 left-1 bg-sky-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded shadow z-10">MAIN</span>
+                                @endif
+                                <button type="button" onclick="deleteProductImage({{ $product->id }}, {{ $index }}, '{{ addslashes($img) }}')" 
+                                        class="absolute top-1 right-1 bg-rose-500 hover:bg-rose-700 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center shadow transition z-10"
+                                        title="Delete this image">
+                                    <i class="fa-solid fa-trash-can text-[10px]"></i>
+                                </button>
+                                <div class="w-full h-20 flex items-center justify-center overflow-hidden mb-1">
+                                    <img src="{{ asset($img) }}" alt="Product Image {{ $index + 1 }}" class="max-h-full max-w-full object-contain">
+                                </div>
+                                <label class="inline-flex items-center text-[10px] text-slate-600 font-medium cursor-pointer">
+                                    <input type="checkbox" name="remove_images[]" value="{{ $index }}" class="rounded text-rose-600 focus:ring-rose-500 mr-1">
+                                    Remove
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <p class="text-xs text-slate-500 italic mb-2">No images uploaded for this product yet.</p>
+                @endif
+            </div>
 
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Upload Additional Images</label>
-            <input type="file" name="images[]" multiple accept="image/*" class="w-full text-xs border rounded-lg border-slate-300 p-2 bg-slate-50">
+            <div class="pt-3 border-t border-slate-200">
+                <label class="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">Upload New Images</label>
+                <input type="file" name="images[]" multiple accept="image/*" class="w-full text-xs border rounded-lg border-slate-300 p-2 bg-white mb-3">
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <label class="inline-flex items-center text-xs font-semibold text-slate-700 cursor-pointer">
+                        <input type="checkbox" name="set_primary" value="1" checked class="rounded text-sky-600 focus:ring-sky-500 mr-2">
+                        Set newly uploaded image as Main/Primary display image
+                    </label>
+
+                    <label class="inline-flex items-center text-xs font-semibold text-rose-700 cursor-pointer">
+                        <input type="checkbox" name="replace_existing" value="1" class="rounded text-rose-600 focus:ring-rose-500 mr-2">
+                        Replace ALL existing images with new upload(s)
+                    </label>
+                </div>
+            </div>
         </div>
 
         <div class="flex items-center">
@@ -148,6 +180,38 @@
             select.innerHTML = options;
         } catch (e) {
             select.innerHTML = '<option value="">-- None Available --</option>';
+        }
+    }
+
+    async function deleteProductImage(productId, index, imagePath) {
+        if (!confirm('Are you sure you want to delete this image?')) return;
+
+        try {
+            const token = document.querySelector('input[name="_token"]')?.value;
+            
+            const response = await fetch(`/admin/products/${productId}/delete-image`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': token,
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    image_index: index,
+                    image_path: imagePath
+                })
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                const card = document.getElementById(`image-card-${index}`);
+                if (card) card.remove();
+            } else {
+                alert(result.message || 'Failed to delete image.');
+            }
+        } catch (e) {
+            console.error(e);
+            alert('An error occurred while deleting the image.');
         }
     }
 </script>
