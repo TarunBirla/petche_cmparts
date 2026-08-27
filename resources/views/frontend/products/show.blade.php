@@ -6,12 +6,18 @@
 
 <!-- Breadcrumb -->
 <div class="bg-slate-100 border-b border-slate-200 py-3 px-4 text-xs text-slate-600">
-    <div class="max-w-7xl mx-auto flex items-center space-x-2">
+    <div class="max-w-7xl mx-auto flex items-center space-x-2 flex-wrap">
         <a href="{{ route('home') }}" class="hover:text-sky-600">Home</a>
         <span>/</span>
         <a href="{{ route('products.index') }}" class="hover:text-sky-600">Products</a>
-        <span>/</span>
-        <a href="{{ route('products.index', ['category' => $product->category->slug ?? '']) }}" class="hover:text-sky-600">{{ $product->category->name ?? 'Category' }}</a>
+        @if($product->category)
+            <span>/</span>
+            <a href="{{ route('products.index', ['category' => $product->category->slug]) }}" class="hover:text-sky-600">{{ $product->category->name }}</a>
+        @endif
+        @if($product->subCategory)
+            <span>/</span>
+            <a href="{{ route('products.index', ['category' => $product->category->slug ?? '', 'subcategory' => $product->subCategory->slug]) }}" class="hover:text-sky-600">{{ $product->subCategory->name }}</a>
+        @endif
         <span>/</span>
         <span class="text-slate-900 font-semibold truncate max-w-xs">{{ $product->name }}</span>
     </div>
@@ -46,13 +52,24 @@
             <!-- Right Column: Product Specs & Quote Action -->
             <div class="flex flex-col justify-between">
                 <div>
-                    <!-- Manufacturer Badge -->
-                    <div class="flex items-center gap-3 mb-3">
-                        <span class="bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                            {{ $product->manufacturer->name ?? 'Industrial Manufacturer' }}
-                        </span>
+                    <!-- Taxonomy & Manufacturer Badges -->
+                    <div class="flex flex-wrap items-center gap-2 mb-3">
+                        @if($product->manufacturer)
+                            <span class="bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                {{ $product->manufacturer->name }}
+                            </span>
+                        @endif
+
+                        @if($product->category)
+                            <a href="{{ route('products.index', ['category' => $product->category->slug]) }}" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full border border-slate-200 transition">
+                                <i class="fa-solid fa-folder text-[10px] text-slate-400 mr-1"></i> {{ $product->category->name }}
+                            </a>
+                        @endif
+
                         @if($product->subCategory)
-                            <span class="text-xs text-slate-500">• {{ $product->subCategory->name }}</span>
+                            <a href="{{ route('products.index', ['category' => $product->category->slug ?? '', 'subcategory' => $product->subCategory->slug]) }}" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full border border-emerald-200 transition">
+                                <i class="fa-solid fa-folder-tree text-[10px] text-emerald-500 mr-1"></i> {{ $product->subCategory->name }}
+                            </a>
                         @endif
                     </div>
 
@@ -60,22 +77,30 @@
                         {{ $product->name }}
                     </h1>
 
-                    <!-- Key Technical Metadata Cards -->
-                    <div class="grid grid-cols-2 gap-3 mb-6">
+                    <!-- Key Technical Metadata Cards Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
                         <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
                             <span class="text-[10px] uppercase font-bold text-slate-400 block">Part Number</span>
-                            <span class="font-mono font-bold text-slate-800 text-sm">{{ $product->part_number }}</span>
+                            <span class="font-mono font-bold text-slate-800 text-xs sm:text-sm truncate block">{{ $product->part_number }}</span>
                         </div>
                         <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
                             <span class="text-[10px] uppercase font-bold text-slate-400 block">Model Number</span>
-                            <span class="font-mono font-bold text-slate-800 text-sm">{{ $product->model_number }}</span>
+                            <span class="font-mono font-bold text-slate-800 text-xs sm:text-sm truncate block">{{ $product->model_number }}</span>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                            <span class="text-[10px] uppercase font-bold text-slate-400 block">Category</span>
+                            <span class="font-bold text-slate-800 text-xs sm:text-sm truncate block">{{ $product->category->name ?? 'N/A' }}</span>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                            <span class="text-[10px] uppercase font-bold text-slate-400 block">Sub-Category</span>
+                            <span class="font-bold text-slate-800 text-xs sm:text-sm truncate block">{{ $product->subCategory->name ?? 'None' }}</span>
                         </div>
                     </div>
 
                     <!-- Short Summary -->
                     @if($product->summary)
                         <div class="text-sm text-slate-600 mb-6 leading-relaxed bg-sky-50/50 p-4 rounded-xl border border-sky-100">
-                            <h4 class="font-bold text-xs uppercase text-sky-900 mb-1">Product Overview</h4>
+                            <h4 class="font-bold text-xs uppercase text-sky-900 mb-1">Product Specification</h4>
                             {{ $product->summary }}
                         </div>
                     @endif
@@ -117,7 +142,7 @@
 
                         <button id="detail-add-request-btn" onclick="addCurrentProductToRequest()" class="flex-grow bg-[var(--primary-dark)] hover:bg-sky-700 text-white font-bold text-sm py-3.5 px-6 rounded-xl shadow-lg shadow-sky-200 transition flex items-center justify-center gap-2">
                             <i class="fa-solid fa-plus text-base"></i>
-                            <span>Add to Request List</span>
+                            <span> Request For  quote</span>
                         </button>
                     </div>
                 </div>
@@ -209,10 +234,10 @@
         const btn = document.getElementById('detail-add-request-btn');
         if (btn) {
             btn.className = btn.className.replace('bg-[var(--primary-dark)] hover:bg-sky-700', 'bg-emerald-600 hover:bg-emerald-700');
-            btn.innerHTML = `<i class="fa-solid fa-check text-base"></i> <span>Added to Request List</span>`;
+            btn.innerHTML = `<i class="fa-solid fa-check text-base"></i> <span>Added to Request for quote</span>`;
             setTimeout(() => {
                 btn.className = btn.className.replace('bg-emerald-600 hover:bg-emerald-700', 'bg-[var(--primary-dark)] hover:bg-sky-700');
-                btn.innerHTML = `<i class="fa-solid fa-plus text-base"></i> <span>Add to Request List</span>`;
+                btn.innerHTML = `<i class="fa-solid fa-plus text-base"></i> <span> Request For  quote</span>`;
             }, 3000);
         }
     }

@@ -52,7 +52,7 @@
                     <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">UK Head Office Address</span>
                     <p class="text-xs text-slate-600 leading-relaxed font-medium mt-1">
                         <i class="fa-solid fa-location-dot text-sky-600 mr-1.5"></i>
-                        Suite 211 Sterling House, Langston Road, Loughton IG10 3TS, United Kingdom
+                        38F Chigwell Lane, Oak Hill IND. EST. Loughton. IG10 3NY
                     </p>
                 </div>
             </div>

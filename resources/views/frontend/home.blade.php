@@ -19,14 +19,14 @@
             <!-- Left: copy + search -->
             <div class="text-center lg:text-left">
                 <span class="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-accent bg-white/5 border border-white/10 px-3 py-1.5 rounded-full mb-5">
-                    <i class="fa-solid fa-check-circle"></i> 500+ VERIFIED OEM BRANDS SOURCED
+                    <i class="fa-solid fa-check-circle"></i> 500+ VERIFIED OEM MANUFACTURERS SOURCED
                 </span>
 
                 <h1 class="font-display text-3xl sm:text-5xl font-bold tracking-tight leading-[1.1] mb-4">
                     High-Performance Industrial Equipment Spares
                 </h1>
                 <p class="text-white/70 text-[16px] sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed mb-7">
-                    Sourcing over 500+ top European and USA brands. Control valves, transmitters, flow meters, actuators &amp; MRO spares — with a direct quotation, every time.
+                    Sourcing over 500+ top European and USA manufacturers. Control valves, transmitters, flow meters, actuators &amp; MRO spares — with a direct quotation, every time.
                 </p>
 
                 <form action="{{ route('products.index') }}" method="GET" class="bg-white p-2.5 rounded-2xl shadow-2xl flex flex-col sm:flex-row items-center gap-2 max-w-xl mx-auto lg:mx-0">
@@ -34,13 +34,14 @@
                         <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-[var(--text-muted)] text-sm"></i>
                         <input type="text" name="search" placeholder="Search by Product Name, Part #, Model #..." class="w-full text-[16px] sm:text-sm pl-11 pr-4 py-3 rounded-xl text-[var(--text)] focus:outline-none font-medium placeholder-[var(--text-muted)]">
                     </div>
-                    <div class="w-full sm:w-44">
-                        <select name="manufacturer" class="w-full text-[16px] sm:text-sm px-3 py-3 rounded-xl text-[var(--text)] bg-[var(--bg)] border border-token focus:outline-none font-medium">
-                            <option value="">All Brands</option>
+                    <div class="w-full sm:w-48 relative">
+                        <select name="manufacturer" class="w-full text-[15px] sm:text-xs px-3.5 py-3 rounded-xl text-slate-800 bg-slate-100 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] font-semibold cursor-pointer appearance-none pr-8">
+                            <option value="">All Manufacturers</option>
                             @foreach($manufacturers as $manuf)
                                 <option value="{{ $manuf->slug }}">{{ $manuf->name }}</option>
                             @endforeach
                         </select>
+                        <i class="fa-solid fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs pointer-events-none"></i>
                     </div>
                     <button type="submit" class="cta-clip w-full sm:w-auto bg-accent hover:bg-accent-dark text-white font-bold text-[16px] sm:text-sm px-7 py-3.5 shadow-lg transition flex items-center justify-center gap-2">
                         <span>Search</span>
@@ -105,11 +106,11 @@
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-9 gap-4">
             <div>
                 <span class="font-mono text-[11px] font-bold uppercase tracking-widest text-accent block mb-1">Authorized Sourcing Partners</span>
-                <h2 class="font-display text-2xl sm:text-3xl font-bold text-[var(--text)]">Top Brands &amp; Manufacturers</h2>
-                <p class="text-sm text-[var(--text-muted)] mt-1.5">{{ $manufacturers->count() }}+ OEM brands available for direct-quotation sourcing</p>
+                <h2 class="font-display text-2xl sm:text-3xl font-bold text-[var(--text)]">Top Manufacturers</h2>
+                <p class="text-sm text-[var(--text-muted)] mt-1.5">{{ $manufacturers->count() }}+ OEM manufacturers available for direct-quotation sourcing</p>
             </div>
             <a href="{{ route('manufacturers.index') }}" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-[var(--primary-dark)] transition border border-token hover:border-primary rounded-xl px-4 py-2.5">
-                View All Brands <i class="fa-solid fa-arrow-right text-xs"></i>
+                View All Manufacturers <i class="fa-solid fa-arrow-right text-xs"></i>
             </a>
         </div>
 
@@ -200,7 +201,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
         <div>
             <div class="font-display text-2xl font-bold text-primary">500+</div>
-            <div class="text-xs text-[var(--text-muted)] font-semibold mt-1">OEM Brands</div>
+            <div class="text-xs text-[var(--text-muted)] font-semibold mt-1">OEM Manufacturers</div>
         </div>
         <div>
             <div class="font-display text-2xl font-bold text-primary">{{ $allFeaturedProducts->count() > 0 ? '12k+' : '0' }}</div>
@@ -220,15 +221,15 @@
 <!-- Legal Disclaimer Section -->
 <section class="py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="w-full space-y-3 text-center">
-            <h3 class="font-display font-bold text-base sm:text-lg text-[var(--text)] flex justify-center items-center gap-2">
+        <div class="w-full space-y-3 text-left">
+            <h3 class="font-display font-bold text-base sm:text-lg text-[var(--text)] flex justify-start items-center gap-2">
                 <i class="fa-solid fa-scale-balanced text-primary"></i>
                 Legal Disclaimer
             </h3>
-            <p class="text-[15px] text-[var(--text-muted)] leading-relaxed text-center max-w-4xl mx-auto">
+            <p class="text-[15px] text-[var(--text-muted)] leading-relaxed text-left max-w-5xl">
                 Petchemparts is not an authorized dealer, agent or affiliate of any of the designer, brands, or manufacturer, the products of which are offered for sale on www.petchemparts.com. All trademarks, brand names, and logos mentioned are used for identification purposes only and are registered trademarks of their respective owners who reserve the rights of ownership. The use of trademark, brand name or product on our website is not intended to suggest that the company, trademark or brand is affiliated to or endorses our website. All products are 100% genuine and legally purchased from authorized sources.
             </p>
-            <div class="text-center">
+            <div class="text-center pt-2">
                 <img src="{{ asset('images/disclaimer.png') }}" alt="Petchemparts Legal Disclaimer Badge" class="h-20 w-auto object-contain mx-auto">
             </div>
         </div>

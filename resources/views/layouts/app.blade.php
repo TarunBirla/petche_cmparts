@@ -148,13 +148,14 @@
                         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40 text-xs"></i>
                         <input type="text" name="search" value="{{ request('search') }}" placeholder="Search by Product Name, Part # or Model #..." class="w-full text-xs pl-9 pr-4 py-2.5 rounded-xl bg-white/10 text-white placeholder-white/40 border border-white/10 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] font-medium">
                     </div>
-                    <div class="w-full sm:w-48">
-                        <select name="manufacturer" class="w-full text-xs px-3 py-2.5 rounded-xl bg-white/10 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] font-medium">
-                            <option value="">All Manufacturers</option>
+                    <div class="w-full sm:w-48 relative">
+                        <select name="manufacturer" class="w-full text-xs px-3.5 py-2.5 rounded-xl text-slate-800 bg-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] font-semibold cursor-pointer appearance-none pr-8 shadow-sm">
+                            <option value="" class="text-slate-800 bg-white">All Manufacturers</option>
                             @foreach(\App\Models\Manufacturer::where('is_active', true)->orderBy('name')->get() as $manuf)
-                                <option value="{{ $manuf->slug }}" {{ request('manufacturer') == $manuf->slug ? 'selected' : '' }}>{{ $manuf->name }}</option>
+                                <option value="{{ $manuf->slug }}" class="text-slate-800 bg-white" {{ request('manufacturer') == $manuf->slug ? 'selected' : '' }}>{{ $manuf->name }}</option>
                             @endforeach
                         </select>
+                        <i class="fa-solid fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 text-[10px] pointer-events-none"></i>
                     </div>
                     <button type="submit" class="cta-clip w-full sm:w-auto bg-accent hover:bg-accent-dark text-white text-xs font-bold px-6 py-2.5 transition flex items-center justify-center gap-1.5 shadow-md">
                         <i class="fa-solid fa-magnifying-glass text-xs"></i>
@@ -218,9 +219,8 @@
                     <h3 class="text-white font-display font-semibold text-base mb-4 border-b border-white/10 pb-2">UK Head Office</h3>
                     <p class="text-xs text-white/50 mb-2 leading-relaxed">
                         <i class="fa-solid fa-location-dot text-accent mr-1.5"></i>
-                        Suite 211 Sterling House, Langston Road, Loughton IG10 3TS, United Kingdom
+                        38F Chigwell Lane, Oak Hill IND. EST. Loughton. IG10 3NY
                     </p>
-                    <p class="text-xs text-white/70 mb-1"><i class="fa-solid fa-phone text-accent mr-1.5"></i> Helpline: <span class="spec-tag font-bold">0044-7891363776</span></p>
                     <p class="text-xs text-white/70 mb-2"><i class="fa-solid fa-phone text-accent mr-1.5"></i> Office: <span class="spec-tag font-bold">0044-1234440530</span></p>
                     <p class="text-xs text-white/70 mb-3"><i class="fa-solid fa-envelope text-accent mr-1.5"></i> Sales@petchemparts.com</p>
                 </div>
