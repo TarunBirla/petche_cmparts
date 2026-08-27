@@ -11,7 +11,10 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         if (Auth::check()) {
-            return redirect()->route('admin.dashboard');
+            if (Auth::user()->isAdmin()) {
+                return redirect()->route('admin.dashboard');
+            }
+            return redirect()->route('home');
         }
         return view('auth.login');
     }
@@ -25,7 +28,12 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials, $request->remember)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('admin.dashboard'))->with('success', 'Welcome to Admin Dashboard!');
+            
+            if (Auth::user()->isAdmin()) {
+                return redirect()->intended(route('admin.dashboard'))->with('success', 'Welcome to Admin Dashboard!');
+            }
+
+            return redirect()->intended(route('home'))->with('success', 'Logged in successfully! Welcome back, ' . Auth::user()->name);
         }
 
         return back()->withErrors([
@@ -39,6 +47,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('success', 'Logged out successfully.');
+        return redirect()->route('home')->with('toast_success', 'You have been logged out successfully.');
     }
 }

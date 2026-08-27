@@ -107,6 +107,11 @@
 
                 <div class="pt-3 pb-1 px-4 text-[10px] uppercase font-bold tracking-wider text-slate-500">Inquiries & Content</div>
 
+                <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'bg-[#0F6B66] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
+                    <i class="fa-solid fa-users text-sm w-5 text-center"></i>
+                    <span>Users & Customers</span>
+                </a>
+
                 <a href="{{ route('admin.requests.index') }}" class="{{ request()->routeIs('admin.requests.*') ? 'bg-[#0F6B66] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
                     <i class="fa-solid fa-clipboard-list text-sm w-5 text-center"></i>
                     <span>Product Requests</span>

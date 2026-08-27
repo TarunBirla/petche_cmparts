@@ -11,6 +11,7 @@ class ProductRequest extends Model
 
     protected $fillable = [
         'request_number',
+        'user_id',
         'customer_name',
         'customer_email',
         'customer_phone',
@@ -21,5 +22,10 @@ class ProductRequest extends Model
     public function items()
     {
         return $this->hasMany(ProductRequestItem::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

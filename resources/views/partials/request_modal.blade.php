@@ -69,18 +69,30 @@
                             <i class="fa-solid fa-id-card text-sky-600"></i> Customer Information
                         </h4>
                         
+                        @guest
+                            <div class="bg-sky-50 border border-sky-200 rounded-xl p-4 text-center mb-3">
+                                <i class="fa-solid fa-lock text-sky-600 text-lg mb-1 block"></i>
+                                <h5 class="font-bold text-slate-800 text-xs">Account Required to Submit Request</h5>
+                                <p class="text-[11px] text-slate-500 mt-0.5 mb-2.5">Please sign in or create an account to submit your quote inquiry and receive pricing.</p>
+                                <div class="flex justify-center gap-2">
+                                    <a href="{{ route('login') }}" class="bg-[var(--primary-dark)] hover:bg-sky-700 text-white font-bold text-xs px-4 py-1.5 rounded-lg shadow transition">Sign In</a>
+                                    <a href="{{ route('register') }}" class="bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs px-4 py-1.5 rounded-lg border border-slate-300 transition">Register</a>
+                                </div>
+                            </div>
+                        @endguest
+
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-2.5">
                             <div>
                                 <label class="block text-[11px] font-medium text-slate-700 mb-1">Full Name <span class="text-rose-500">*</span></label>
-                                <input type="text" id="req_customer_name" required placeholder="e.g. John Doe" class="w-full text-xs px-3 py-1.5 border rounded-lg border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                                <input type="text" id="req_customer_name" required value="{{ auth()->check() ? auth()->user()->name : '' }}" placeholder="e.g. John Doe" class="w-full text-xs px-3 py-1.5 border rounded-lg border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500">
                             </div>
                             <div>
                                 <label class="block text-[11px] font-medium text-slate-700 mb-1">Email Address <span class="text-rose-500">*</span></label>
-                                <input type="email" id="req_customer_email" required placeholder="name@company.com" class="w-full text-xs px-3 py-1.5 border rounded-lg border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                                <input type="email" id="req_customer_email" required value="{{ auth()->check() ? auth()->user()->email : '' }}" placeholder="name@company.com" class="w-full text-xs px-3 py-1.5 border rounded-lg border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500">
                             </div>
                             <div>
                                 <label class="block text-[11px] font-medium text-slate-700 mb-1">Phone Number <span class="text-rose-500">*</span></label>
-                                <input type="tel" id="req_customer_phone" required placeholder="+44 7123 456789" class="w-full text-xs px-3 py-1.5 border rounded-lg border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                                <input type="tel" id="req_customer_phone" required value="{{ auth()->check() ? auth()->user()->phone : '' }}" placeholder="+44 7123 456789" class="w-full text-xs px-3 py-1.5 border rounded-lg border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500">
                             </div>
                         </div>
 
@@ -100,10 +112,17 @@
 
                             <div class="flex gap-2">
                                 <button type="button" onclick="closeRequestModal()" class="px-4 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition">Close</button>
-                                <button type="submit" id="submit-request-btn" class="px-5 py-2 bg-[var(--primary-dark)] hover:bg-sky-700 text-white text-xs font-bold rounded-lg shadow-md shadow-sky-200 transition flex items-center gap-2">
-                                    <span>Submit Request</span>
-                                    <i class="fa-solid fa-paper-plane"></i>
-                                </button>
+                                @auth
+                                    <button type="submit" id="submit-request-btn" class="px-5 py-2 bg-[var(--primary-dark)] hover:bg-sky-700 text-white text-xs font-bold rounded-lg shadow-md shadow-sky-200 transition flex items-center gap-2">
+                                        <span>Submit Request</span>
+                                        <i class="fa-solid fa-paper-plane"></i>
+                                    </button>
+                                @else
+                                    <a href="{{ route('login') }}" class="px-5 py-2 bg-[var(--primary-dark)] hover:bg-sky-700 text-white text-xs font-bold rounded-lg shadow-md transition flex items-center gap-2">
+                                        <span>Login to Submit Request</span>
+                                        <i class="fa-solid fa-right-to-bracket"></i>
+                                    </a>
+                                @endauth
                             </div>
                         </div>
                     </form>

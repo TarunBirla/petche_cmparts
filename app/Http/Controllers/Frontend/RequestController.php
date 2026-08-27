@@ -16,6 +16,13 @@ class RequestController extends Controller
 {
     public function store(Request $request)
     {
+        if (!auth()->check()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Please sign in or register an account before submitting a quote request.'
+            ], 401);
+        }
+
         $request->validate([
             'customer_name' => 'required|string|max:255',
             'customer_email' => 'required|email|max:255',
@@ -30,6 +37,7 @@ class RequestController extends Controller
 
         $productRequest = ProductRequest::create([
             'request_number' => $requestNumber,
+            'user_id' => auth()->id(),
             'customer_name' => $request->customer_name,
             'customer_email' => $request->customer_email,
             'customer_phone' => $request->customer_phone,
@@ -51,12 +59,19 @@ class RequestController extends Controller
             }
         }
 
-        // Send Email Notification to Admin
+        // Send Email Notification to Admin (sales@petchemparts.com)
         try {
-            $adminEmail = config('mail.from.address', 'phil.andreson@nexteck.uk');
+            $adminEmail = 'sales@petchemparts.com';
             Mail::to($adminEmail)->send(new ProductRequestSubmitted($productRequest));
         } catch (\Exception $e) {
-            Log::error('Failed to send Product Request email: ' . $e->getMessage());
+            Log::error('Failed sending Product Request admin email: ' . $e->getMessage());
+        }
+
+        // Send Email Confirmation to Customer
+        try {
+            Mail::to($productRequest->customer_email)->send(new \App\Mail\ProductRequestCustomerConfirmation($productRequest));
+        } catch (\Exception $e) {
+            Log::error('Failed sending Product Request customer email: ' . $e->getMessage());
         }
 
         return response()->json([

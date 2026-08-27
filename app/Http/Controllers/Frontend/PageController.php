@@ -53,15 +53,18 @@ class PageController extends Controller
             'message' => $request->message,
         ]);
 
-        // Send email alert to Admin
+        // Send email alert to Admin (sales@petchemparts.com)
         try {
-            $adminEmail = config('mail.from.address', 'Sales@petchemparts.com');
-            Mail::raw("New Contact Inquiry Received from {$contact->name} ({$contact->email}):\n\nSubject: {$contact->subject}\nPhone: {$contact->phone}\n\nMessage:\n{$contact->message}", function ($mail) use ($adminEmail, $contact) {
-                $mail->to($adminEmail)
-                     ->subject('New Contact Inquiry: ' . $contact->subject);
-            });
+            Mail::to('sales@petchemparts.com')->send(new \App\Mail\ContactMessageAdminMail($contact));
         } catch (\Exception $e) {
-            Log::error('Failed sending contact email alert: ' . $e->getMessage());
+            Log::error('Failed sending contact email alert to admin: ' . $e->getMessage());
+        }
+
+        // Send email confirmation to Customer
+        try {
+            Mail::to($contact->email)->send(new \App\Mail\ContactMessageCustomerMail($contact));
+        } catch (\Exception $e) {
+            Log::error('Failed sending contact email confirmation to customer: ' . $e->getMessage());
         }
 
         return back()->with('success', 'Thank you for reaching out to Petchemparts! Your message has been received and our team will get back to you shortly.');

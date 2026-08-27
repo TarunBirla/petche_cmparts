@@ -115,12 +115,40 @@
                     <a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'text-primary' : 'hover:text-primary' }} transition">Contact Us</a>
                 </nav>
 
-                <div class="flex items-center gap-3">
-                    <button id="open-request-btn" onclick="handleHeaderRequestClick()" class="cta-clip relative bg-primary hover:bg-primary-dark text-white px-4 py-2.5 font-semibold shadow-md transition flex items-center gap-2 text-xs sm:text-sm">
-                        <i class="fa-solid fa-clipboard-list text-base"></i>
-                        <span class="hidden sm:inline">Request List</span>
+                <div class="flex items-center gap-2.5">
+                    <button id="open-request-btn" onclick="handleHeaderRequestClick()" class="cta-clip relative bg-primary hover:bg-primary-dark text-white px-3.5 py-2 font-semibold shadow-md transition flex items-center gap-2 text-xs sm:text-sm">
+                        <i class="fa-solid fa-clipboard-list text-sm"></i>
+                        <span class="hidden sm:inline">Request Quote</span>
                         <span id="request-badge-count" class="bg-white/20 text-white text-xs font-extrabold px-2 py-0.5 rounded-full ml-0.5">0</span>
                     </button>
+
+                    @auth
+                        <div class="relative flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs">
+                            <span class="font-bold text-slate-800 hidden lg:inline px-1.5">
+                                <i class="fa-solid fa-circle-user text-sky-600 mr-1 text-sm"></i> {{ auth()->user()->name }}
+                            </span>
+                            @if(auth()->user()->isAdmin())
+                                <a href="{{ route('admin.dashboard') }}" class="bg-sky-900 text-white text-[11px] font-bold px-2 py-1 rounded-lg hover:bg-sky-800 transition">
+                                    Admin
+                                </a>
+                            @endif
+                            <form action="{{ route('logout') }}" method="POST" class="inline">
+                                @csrf
+                                <button type="submit" class="text-rose-600 hover:text-rose-800 font-semibold px-2 py-1 transition" title="Logout">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </button>
+                            </form>
+                        </div>
+                    @else
+                        <div class="hidden sm:flex items-center gap-1.5 text-xs font-semibold">
+                            <a href="{{ route('login') }}" class="px-3 py-2 text-slate-700 hover:text-primary transition">
+                                <i class="fa-solid fa-right-to-bracket text-xs mr-1 text-slate-400"></i> Login
+                            </a>
+                            <a href="{{ route('register') }}" class="px-3 py-2 bg-primary hover:bg-primary-dark text-white rounded-xl transition shadow-sm font-bold">
+                                Register
+                            </a>
+                        </div>
+                    @endauth
 
                     <button onclick="toggleMobileMenu()" class="md:hidden text-[var(--text)] hover:text-primary p-2 text-xl focus:outline-none" aria-label="Toggle Mobile Menu">
                         <i class="fa-solid fa-bars"></i>
@@ -136,6 +164,24 @@
             <a href="{{ route('manufacturers.index') }}" class="block px-3 py-2.5 rounded-lg {{ request()->routeIs('manufacturers.*') ? 'bg-white/10' : 'hover:bg-white/5' }}">Manufacturers</a>
             <a href="{{ route('about-us') }}" class="block px-3 py-2.5 rounded-lg {{ request()->routeIs('about-us') ? 'bg-white/10' : 'hover:bg-white/5' }}">About Us</a>
             <a href="{{ route('contact') }}" class="block px-3 py-2.5 rounded-lg {{ request()->routeIs('contact') ? 'bg-white/10' : 'hover:bg-white/5' }}">Contact Us</a>
+
+            @auth
+                <div class="pt-3 border-t border-white/10 px-3 text-xs text-sky-200">
+                    Logged in as: <strong class="text-white">{{ auth()->user()->name }}</strong>
+                </div>
+                @if(auth()->user()->isAdmin())
+                    <a href="{{ route('admin.dashboard') }}" class="block px-3 py-2 rounded-lg bg-sky-600 text-white">Admin Dashboard</a>
+                @endif
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="block w-full text-left px-3 py-2 rounded-lg hover:bg-rose-500/20 text-rose-300">Logout</button>
+                </form>
+            @else
+                <div class="pt-3 border-t border-white/10 space-y-1">
+                    <a href="{{ route('login') }}" class="block px-3 py-2.5 rounded-lg hover:bg-white/5">Login</a>
+                    <a href="{{ route('register') }}" class="block px-3 py-2.5 rounded-lg bg-accent text-white text-center">Register Account</a>
+                </div>
+            @endauth
         </div>
     </header>
 
@@ -166,6 +212,21 @@
         </div>
     @endif
 
+    <!-- Floating Toaster Toast Notification -->
+    <div id="toast-container" class="fixed top-24 right-5 z-50 flex flex-col space-y-2 pointer-events-none">
+        @if(session('toast_success'))
+            <div id="toast-msg" class="pointer-events-auto bg-slate-900 text-white border-l-4 border-emerald-500 shadow-2xl rounded-xl p-4 flex items-center gap-3 transition-all duration-500 transform translate-x-0 max-w-sm">
+                <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 text-sm">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </div>
+                <div class="text-xs font-semibold">
+                    {{ session('toast_success') }}
+                </div>
+                <button onclick="dismissToast(this.parentElement)" class="ml-auto text-slate-400 hover:text-white text-base font-bold p-1">&times;</button>
+            </div>
+        @endif
+    </div>
+
     <!-- Main Content -->
     <main class="flex-grow">
         @if(session('success'))
@@ -179,6 +240,24 @@
 
         @yield('content')
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toast = document.getElementById('toast-msg');
+            if (toast) {
+                setTimeout(() => {
+                    dismissToast(toast);
+                }, 4500);
+            }
+        });
+
+        function dismissToast(el) {
+            if (!el) return;
+            el.style.opacity = '0';
+            el.style.transform = 'translateX(100%)';
+            setTimeout(() => el.remove(), 400);
+        }
+    </script>
 
     <!-- Footer -->
     <footer class="bg-[var(--primary-dark)] text-white/70 mt-16 border-t-4 border-accent">
@@ -262,7 +341,7 @@
         function handleHeaderRequestClick(){
             const items = getRequestItems();
             if (items.length === 0) {
-                showToast('Your request list is currently empty. Please add products to your list first.', 'warning');
+                showToast('Your Request Quote is currently empty. Please add products to your list first.', 'warning');
             } else {
                 openRequestModal();
             }
@@ -276,7 +355,7 @@
             else { items.push({ product_id: productId, name, part_number: partNumber, price, image, quantity: 1 }); }
 
             saveRequestItems(items);
-            showToast('Product successfully added to your request list!', 'success');
+            showToast('Product successfully added to your Request Quote!', 'success');
 
             if (btnElement) {
                 const originalHtml = btnElement.innerHTML;
