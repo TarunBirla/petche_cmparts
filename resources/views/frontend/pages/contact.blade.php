@@ -16,7 +16,7 @@
         </div>
 
         <div class="text-xs text-sky-200 bg-sky-800/60 px-4 py-2 rounded-xl border border-sky-700">
-            Helpline: <strong class="text-white text-sm ml-1 font-mono">0044-7891363776</strong>
+            Helpline: <strong class="text-white text-sm ml-1 font-mono">0044-1234440530</strong>
         </div>
     </div>
 </div>
@@ -34,7 +34,7 @@
 
                 <div>
                     <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Sales Helpline</span>
-                    <a href="tel:00447891363776" class="text-sky-700 font-extrabold text-base font-mono hover:underline">0044-7891363776</a>
+                    <a href="tel:00447891363776" class="text-sky-700 font-extrabold text-base font-mono hover:underline">0044-1234440530</a>
                     <span class="text-xs text-emerald-600 block mt-0.5"><i class="fa-solid fa-clock mr-1"></i> 7 Days a week: 9:00 am - 7:00 pm</span>
                 </div>
 
