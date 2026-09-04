@@ -62,7 +62,7 @@
         </thead>
         <tbody class="divide-y divide-slate-100">
             @forelse($products as $prod)
-                @php $img = (!empty($prod->images) && isset($prod->images[0])) ? asset($prod->images[0]) : asset('images/logo.png'); @endphp
+                @php $img = (!empty($prod->images) && isset($prod->images[0])) ? asset($prod->images[0]) : asset('images/newlogo.jpeg'); @endphp
                 <tr class="hover:bg-slate-50/80 transition">
                     <td class="p-4">
                         <div class="flex items-center gap-3">

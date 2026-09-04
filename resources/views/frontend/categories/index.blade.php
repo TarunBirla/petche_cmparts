@@ -25,7 +25,7 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @foreach($categories as $cat)
-            @php $catImg = $cat->image ? asset($cat->image) : asset('images/logo.png'); @endphp
+            @php $catImg = $cat->image ? asset($cat->image) : asset('images/newlogo.jpeg'); @endphp
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-sky-300 transition duration-300 overflow-hidden flex flex-col justify-between">
                 <div>
                     <div class="p-6">

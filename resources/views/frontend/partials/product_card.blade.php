@@ -1,7 +1,7 @@
 @php
     $img = (!empty($prod->images) && isset($prod->images[0]) && file_exists(public_path($prod->images[0])))
         ? asset($prod->images[0])
-        : asset('images/logo.png');
+        : asset('images/newlogo.jpeg');
 @endphp
 <div class="bg-white rounded-2xl border border-token overflow-hidden shadow-sm hover:shadow-xl hover:border-primary transition-all duration-300 flex flex-col justify-between h-full group">
     <div class="p-4">

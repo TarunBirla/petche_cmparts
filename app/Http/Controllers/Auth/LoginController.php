@@ -30,10 +30,10 @@ class LoginController extends Controller
             $request->session()->regenerate();
             
             if (Auth::user()->isAdmin()) {
-                return redirect()->intended(route('admin.dashboard'))->with('success', 'Welcome to Admin Dashboard!');
+                return redirect()->intended(route('admin.dashboard'))->with('toast_success', 'Logged in successfully! Welcome back, ' . Auth::user()->name);
             }
 
-            return redirect()->intended(route('home'))->with('success', 'Logged in successfully! Welcome back, ' . Auth::user()->name);
+            return redirect()->intended(route('home'))->with('toast_success', 'Logged in successfully! Welcome back, ' . Auth::user()->name);
         }
 
         return back()->withErrors([

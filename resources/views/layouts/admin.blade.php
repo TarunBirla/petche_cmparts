@@ -7,7 +7,7 @@
     <title>@yield('title', 'Admin Dashboard') - Petchemparts</title>
 
     <!-- Favicon Icon -->
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favlogo.jpeg') }}">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -67,7 +67,7 @@
         <div>
             <!-- Sidebar Header / Logo -->
             <div class="h-20 bg-[#0A4744] flex items-center px-6 border-b border-slate-800 gap-3">
-                <img class="h-9 w-auto bg-white p-1 rounded" src="{{ asset('images/logo.png') }}" alt="Petchemparts Logo">
+                <img class="h-9 w-auto bg-white p-1 rounded" src="{{ asset('images/newlogo.jpeg') }}" alt="Petchemparts Logo">
                 <span class="font-extrabold text-white text-base tracking-wide">Admin Panel</span>
             </div>
 
@@ -182,6 +182,39 @@
             @yield('content')
         </main>
     </div>
+
+    <!-- Floating Toaster Toast Notification -->
+    <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col space-y-2 pointer-events-none">
+        @if(session('toast_success'))
+            <div id="toast-msg" class="pointer-events-auto bg-slate-900 text-white border-l-4 border-emerald-500 shadow-2xl rounded-xl p-4 flex items-center gap-3 transition-all duration-500 transform translate-x-0 max-w-sm">
+                <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 text-sm">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div class="text-xs font-semibold">
+                    {{ session('toast_success') }}
+                </div>
+                <button onclick="dismissToast(this.parentElement)" class="ml-auto text-slate-400 hover:text-white text-base font-bold p-1">&times;</button>
+            </div>
+        @endif
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toast = document.getElementById('toast-msg');
+            if (toast) {
+                setTimeout(() => {
+                    dismissToast(toast);
+                }, 4500);
+            }
+        });
+
+        function dismissToast(el) {
+            if (!el) return;
+            el.style.opacity = '0';
+            el.style.transform = 'translateX(100%)';
+            setTimeout(() => el.remove(), 400);
+        }
+    </script>
 
     @stack('scripts')
 </body>

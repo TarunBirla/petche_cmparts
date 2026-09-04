@@ -31,7 +31,7 @@
             <div>
                 @php 
                     $images = $product->images ?? [];
-                    $mainImage = (!empty($images) && isset($images[0])) ? asset($images[0]) : asset('images/logo.png');
+                    $mainImage = (!empty($images) && isset($images[0])) ? asset($images[0]) : asset('images/newlogo.jpeg');
                 @endphp
                 
                 <div class="border rounded-2xl bg-slate-50 overflow-hidden h-96 flex items-center justify-center p-4 mb-4 border-slate-200">
@@ -170,7 +170,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                 @foreach($relatedProducts as $rel)
                     @php 
-                        $relImg = (!empty($rel->images) && isset($rel->images[0])) ? asset($rel->images[0]) : asset('images/logo.png');
+                        $relImg = (!empty($rel->images) && isset($rel->images[0])) ? asset($rel->images[0]) : asset('images/newlogo.jpeg');
                     @endphp
                     <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition p-4">
                         <div class="h-36 w-full bg-slate-50 rounded-xl overflow-hidden mb-3 border border-slate-100 flex items-center justify-center">
@@ -210,7 +210,7 @@
         const name = "{{ addslashes($product->name) }}";
         const partNumber = "{{ addslashes($product->part_number) }}";
         const price = {{ $product->price }};
-        const image = "{{ (!empty($images) && isset($images[0])) ? $images[0] : 'images/logo.png' }}";
+        const image = "{{ (!empty($images) && isset($images[0])) ? $images[0] : 'images/newlogo.jpeg' }}";
 
         let items = getRequestItems();
         let existing = items.find(i => i.product_id === productId);

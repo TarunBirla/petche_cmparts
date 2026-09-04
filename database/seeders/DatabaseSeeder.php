@@ -149,7 +149,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'The Schneider Electric Compact NSX100N is a 3-pole 3d fixed circuit breaker designed to optimize space and breaking capacity for electrical protection.',
             'quantity' => 29,
             'price' => 450.00,
-            'images' => ['images/logo.png'],
+            'images' => ['images/newlogo.jpeg'],
             'is_active' => true,
         ]);
 
@@ -166,7 +166,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Siemens SIMOTICS SD motors are designed for harsh operation in chemical, oil, gas and offshore applications with high durability.',
             'quantity' => 30,
             'price' => 1890.00,
-            'images' => ['images/logo.png'],
+            'images' => ['images/newlogo.jpeg'],
             'is_active' => true,
         ]);
 
@@ -183,7 +183,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Ingersoll Rand R-Series compressors offer optimal performance and easier maintenance in industrial processing plants.',
             'quantity' => 1,
             'price' => 8400.00,
-            'images' => ['images/logo.png'],
+            'images' => ['images/newlogo.jpeg'],
             'is_active' => true,
         ]);
 
@@ -200,7 +200,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'The Fluke 87V provides accurate frequency and voltage measurements on variable speed motor drives and plant equipment.',
             'quantity' => 6,
             'price' => 620.00,
-            'images' => ['images/logo.png'],
+            'images' => ['images/newlogo.jpeg'],
             'is_active' => true,
         ]);
 
@@ -217,7 +217,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Parker C Series check valves provide unidirectional flow control of liquids and gases in chemical processing systems.',
             'quantity' => 11,
             'price' => 310.00,
-            'images' => ['images/logo.png'],
+            'images' => ['images/newlogo.jpeg'],
             'is_active' => true,
         ]);
 

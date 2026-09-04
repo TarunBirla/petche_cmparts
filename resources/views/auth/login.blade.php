@@ -6,7 +6,7 @@
 <div class="py-12 bg-slate-50 min-h-[75vh] flex items-center justify-center px-4">
     <div class="bg-white w-full max-w-md rounded-2xl shadow-xl p-8 border border-slate-200">
         <div class="text-center mb-6">
-            <img class="h-12 w-auto mx-auto mb-3 object-contain" src="{{ asset('images/logo.png') }}" alt="Petchemparts Logo">
+            <img class="h-12 w-auto mx-auto mb-3 object-contain" src="{{ asset('images/newlogo.jpeg') }}" alt="Petchemparts Logo">
             <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Sign In to Your Account</h1>
             <p class="text-xs text-slate-500 mt-1">Access quote requests, save equipment lists & manage account</p>
         </div>

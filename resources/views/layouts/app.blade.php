@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Petchemparts - Industrial & Petrochemical Parts')</title>
 
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favlogo.jpeg') }}">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -102,7 +102,7 @@
 
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center gap-2.5">
-                        <img class="h-11 w-auto object-contain" src="{{ asset('images/logo.png') }}" alt="Petchemparts Logo">
+                        <img class="h-11 w-auto object-contain" src="{{ asset('images/newlogo.jpeg') }}" alt="Petchemparts Logo">
                     </a>
                 </div>
 
@@ -217,7 +217,7 @@
         @if(session('toast_success'))
             <div id="toast-msg" class="pointer-events-auto bg-slate-900 text-white border-l-4 border-emerald-500 shadow-2xl rounded-xl p-4 flex items-center gap-3 transition-all duration-500 transform translate-x-0 max-w-sm">
                 <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 text-sm">
-                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <i class="fa-solid fa-circle-check"></i>
                 </div>
                 <div class="text-xs font-semibold">
                     {{ session('toast_success') }}
@@ -265,7 +265,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center gap-2 mb-4">
-                        <img class="h-10 w-auto bg-white p-1 rounded" src="{{ asset('images/logo.png') }}" alt="Petchemparts">
+                        <img class="h-10 w-auto bg-white p-1 rounded" src="{{ asset('images/newlogo.jpeg') }}" alt="Petchemparts">
                     </div>
                     <p class="text-white/50 text-xs leading-relaxed mb-3">
                         UK's leading industrial, oil and gas spare parts, consumable & MRO reseller globally.

@@ -53,6 +53,6 @@ class RegisterController extends Controller
             \Illuminate\Support\Facades\Log::error('Failed sending New User Admin Alert email: ' . $e->getMessage());
         }
 
-        return redirect()->route('home')->with('success', 'Registration successful! Welcome to Petchemparts.');
+        return redirect()->route('home')->with('toast_success', 'Registration successful! Welcome to Petchemparts, ' . $user->name);
     }
 }

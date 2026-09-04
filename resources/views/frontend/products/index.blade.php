@@ -125,7 +125,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     @foreach($products as $prod)
                         @php 
-                            $img = (!empty($prod->images) && isset($prod->images[0])) ? asset($prod->images[0]) : asset('images/logo.png');
+                            $img = (!empty($prod->images) && isset($prod->images[0])) ? asset($prod->images[0]) : asset('images/newlogo.jpeg');
                         @endphp
                         <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition flex flex-col justify-between">
                             <div class="p-4">
