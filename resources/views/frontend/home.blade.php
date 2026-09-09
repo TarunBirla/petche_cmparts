@@ -13,7 +13,7 @@
     <div class="absolute -right-32 -top-32 w-[28rem] h-[28rem] rounded-full bg-accent/10 blur-3xl"></div>
     <div class="absolute -left-24 bottom-0 w-72 h-72 rounded-full bg-white/5 blur-3xl"></div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-28">
         <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
 
             <!-- Left: copy + search -->

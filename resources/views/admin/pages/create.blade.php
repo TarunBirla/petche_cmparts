@@ -2,20 +2,43 @@
 
 @section('title', 'Add New CMS Page')
 
+@push('styles')
+<!-- Summernote Lite CSS -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<style>
+    .note-editor {
+        border-radius: 0.75rem !important;
+        overflow: hidden;
+        border-color: #CBD5E1 !important;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+    .note-toolbar {
+        background-color: #F8FAFC !important;
+        border-bottom-color: #E2E8F0 !important;
+        padding: 6px 10px !important;
+    }
+    .note-btn {
+        border-radius: 0.375rem !important;
+        background: #ffffff !important;
+        border: 1px solid #E2E8F0 !important;
+    }
+</style>
+@endpush
+
 @section('content')
-<div class="max-w-4xl bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8">
+<div class="max-w-5xl bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8">
     <h3 class="text-lg font-bold text-slate-900 mb-6">Create CMS Page</h3>
 
     <form action="{{ route('admin.pages.store') }}" method="POST" class="space-y-5">
         @csrf
         <div>
             <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Page Title <span class="text-rose-500">*</span></label>
-            <input type="text" name="title" required placeholder="e.g. Privacy Policy, About Us" class="w-full text-xs px-3 py-2.5 border rounded-lg border-slate-300 focus:ring-2 focus:ring-sky-500">
+            <input type="text" name="title" value="{{ old('title') }}" required placeholder="e.g. Privacy Policy, About Us" class="w-full text-xs px-3 py-2.5 border rounded-lg border-slate-300 focus:ring-2 focus:ring-sky-500">
         </div>
 
         <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Page Content (HTML / Text) <span class="text-rose-500">*</span></label>
-            <textarea name="content" rows="12" required placeholder="Enter full page content here..." class="w-full text-xs p-3 border rounded-lg border-slate-300 font-mono"></textarea>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Page Content <span class="text-rose-500">*</span></label>
+            <textarea id="page-content-editor" name="content" rows="12" required placeholder="Enter full page content here..." class="w-full text-xs p-3 border rounded-lg border-slate-300 font-mono">{{ old('content') }}</textarea>
         </div>
 
         <div class="flex items-center">
@@ -30,3 +53,27 @@
     </form>
 </div>
 @endsection
+
+@push('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#page-content-editor').summernote({
+            placeholder: 'Write page content here with rich formatting, headings, lists, links...',
+            tabsize: 2,
+            height: 400,
+            toolbar: [
+                ['style', ['style', 'bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'hr']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+    });
+</script>
+@endpush
