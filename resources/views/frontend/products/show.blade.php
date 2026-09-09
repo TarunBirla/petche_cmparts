@@ -1,6 +1,37 @@
 @extends('layouts.app')
 
 @section('title', $product->name . ' - Petchemparts')
+@section('meta_description', Str::limit(strip_tags($product->summary ?? $product->description ?? 'Buy ' . $product->name . ' (Part #: ' . $product->part_number . ', Model #: ' . $product->model_number . ') from Petchemparts.'), 155))
+@section('canonical_url', route('products.show', $product->slug))
+
+@section('structured_data')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "{{ addslashes($product->name) }}",
+  "sku": "{{ addslashes($product->part_number) }}",
+  "mpn": "{{ addslashes($product->model_number) }}",
+  "description": "{{ addslashes(Str::limit(strip_tags($product->summary ?? $product->description ?? $product->name), 200)) }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "{{ addslashes($product->manufacturer->name ?? 'Petchemparts') }}"
+  },
+  "category": "{{ addslashes($product->category->name ?? 'Industrial') }}",
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ route('products.show', $product->slug) }}",
+    "priceCurrency": "GBP",
+    "price": "{{ number_format($product->price, 2, '.', '') }}",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Petchemparts"
+    }
+  }
+}
+</script>
+@endsection
 
 @section('content')
 
@@ -123,18 +154,12 @@
                         </div>
                     @endif
 
-                    <!-- Stock & Price Box -->
-                    <div class="flex items-baseline gap-4 mb-6 border-y border-slate-100 py-4">
-                        <div>
-                            <span class="text-xs text-slate-400 block font-medium">Petchemparts Unit Price:</span>
-                            <span class="text-3xl font-extrabold text-sky-900">£{{ number_format($product->price, 2) }}</span>
-                        </div>
-
-                        <div class="ml-auto text-right">
-                            <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full border border-emerald-200">
-                                <i class="fa-solid fa-circle-check text-[10px]"></i> In Stock ({{ $product->quantity }} available)
-                            </span>
-                        </div>
+                    <!-- Stock Availability Box -->
+                    <div class="flex items-center justify-between mb-6 border-y border-slate-100 py-4">
+                        <span class="text-xs text-slate-500 font-semibold">Availability Status:</span>
+                        <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 text-xs font-bold px-3.5 py-1.5 rounded-full border border-emerald-200">
+                            <i class="fa-solid fa-circle-check text-[10px]"></i> In Stock ({{ $product->quantity }} available)
+                        </span>
                     </div>
                 </div>
 
@@ -198,7 +223,6 @@
                             <div class="text-[11px] text-slate-500 mb-3 font-mono">P#: {{ $rel->part_number }}</div>
                         </div>
                         <div>
-                            <div class="text-[11px] font-bold text-sky-900 mb-3">£{{ number_format($rel->price, 2) }}</div>
                             <a href="{{ route('products.show', $rel->slug) }}" class="block text-center w-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold py-1.5 rounded-lg transition">
                                 View Product
                             </a>

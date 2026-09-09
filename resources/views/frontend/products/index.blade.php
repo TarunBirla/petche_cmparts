@@ -148,20 +148,14 @@
                             </div>
 
                             <div class="px-4 pb-4 pt-3 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
-                                <div>
-                                    <span class="text-[10px] text-slate-400 block uppercase">Unit Price:</span>
-                                    <span class="text-base font-bold text-sky-900">£{{ number_format($prod->price, 2) }}</span>
-                                </div>
-
-                                <div class="flex gap-1.5">
-                                    <a href="{{ route('products.show', $prod->slug) }}" class="bg-slate-100 hover:bg-slate-200 text-slate-700 p-2 rounded-lg text-xs" title="View Details">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </a>
-                                    <button onclick="addToRequest({{ $prod->id }}, '{{ addslashes($prod->name) }}', '{{ addslashes($prod->part_number) }}', {{ $prod->price }}, '', this)" class="bg-[var(--primary-dark)] hover:bg-sky-700 text-white text-xs font-semibold px-3 py-2 rounded-lg transition flex items-center gap-1 shadow-sm">
-                                        <i class="fa-solid fa-plus"></i>
-                                        <span>Request</span>
-                                    </button>
-                                </div>
+                                <a href="{{ route('products.show', $prod->slug) }}" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition">
+                                    <i class="fa-solid fa-eye text-[11px]"></i>
+                                    <span>Details</span>
+                                </a>
+                                <button onclick="addToRequest({{ $prod->id }}, '{{ addslashes($prod->name) }}', '{{ addslashes($prod->part_number) }}', 0, '', this)" class="bg-[var(--primary-dark)] hover:bg-sky-700 text-white text-xs font-semibold px-3.5 py-2 rounded-lg transition flex items-center gap-1.5 shadow-sm">
+                                    <i class="fa-solid fa-plus text-[10px]"></i>
+                                    <span>Add Request</span>
+                                </button>
                             </div>
                         </div>
                     @endforeach

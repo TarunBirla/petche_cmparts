@@ -1,5 +1,5 @@
 @php
-    // Frontend image hidden as requested
+    // Frontend image and price hidden as requested
 @endphp
 <div class="bg-white rounded-2xl border border-token overflow-hidden shadow-sm hover:shadow-xl hover:border-primary transition-all duration-300 flex flex-col justify-between h-full group">
     <div class="p-4 sm:p-5">
@@ -31,16 +31,11 @@
         </div>
     </div>
 
-    <!-- Bottom Price & Action Row -->
-    <div class="px-4 pb-4 pt-3 border-t border-token flex items-center justify-between mt-auto bg-[var(--bg)]/60">
-        <div>
-            <span class="text-[10px] text-[var(--text-muted)] font-medium block uppercase tracking-wider">Unit Price</span>
-            <span class="text-sm sm:text-base font-extrabold text-[var(--primary-dark)]">£{{ number_format($prod->price, 2) }}</span>
-        </div>
-
-        <button onclick="addToRequest({{ $prod->id }}, '{{ addslashes($prod->name) }}', '{{ addslashes($prod->part_number) }}', {{ $prod->price }}, '', this)" class="bg-primary hover:bg-[var(--primary-dark)] text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 shadow-md">
+    <!-- Bottom Action Row (Price removed as requested) -->
+    <div class="px-4 pb-4 pt-3 border-t border-token flex items-center justify-end mt-auto bg-[var(--bg)]/60">
+        <button onclick="addToRequest({{ $prod->id }}, '{{ addslashes($prod->name) }}', '{{ addslashes($prod->part_number) }}', 0, '', this)" class="w-full bg-primary hover:bg-[var(--primary-dark)] text-white text-xs font-bold px-3.5 py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5 shadow-md">
             <i class="fa-solid fa-plus text-[10px]"></i>
-            <span>Add Request</span>
+            <span>Add to Request</span>
         </button>
     </div>
 </div>

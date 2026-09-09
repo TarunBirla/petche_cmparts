@@ -37,11 +37,9 @@
                         <table class="w-full text-left text-xs text-slate-600">
                             <thead class="bg-sky-50 text-sky-900 font-semibold uppercase text-[10px] tracking-wider border-b">
                                 <tr>
-                                    <th class="p-2.5 w-5/12">Product</th>
-                                    <th class="p-2.5 w-2/12">Part #</th>
-                                    <th class="p-2.5 w-2/12">Price</th>
-                                    <th class="p-2.5 w-1/12 text-center">Qty</th>
-                                    <th class="p-2.5 w-2/12 text-right">Subtotal</th>
+                                    <th class="p-2.5 w-6/12">Product</th>
+                                    <th class="p-2.5 w-3/12">Part #</th>
+                                    <th class="p-2.5 w-2/12 text-center">Qty</th>
                                     <th class="p-2.5 w-1/12 text-center">Action</th>
                                 </tr>
                             </thead>
@@ -54,12 +52,6 @@
                                     <!-- Populated dynamically by JS -->
                                 </tbody>
                             </table>
-                        </div>
-
-                        <!-- Footer Total Row -->
-                        <div class="bg-slate-50 font-semibold text-slate-800 border-t p-2.5 flex justify-between items-center text-xs">
-                            <span class="text-slate-600">Total Estimated Value:</span>
-                            <span id="modal-grand-total" class="text-sm text-sky-700 font-bold">£0.00</span>
                         </div>
                     </div>
 
@@ -163,24 +155,19 @@
         let grandTotal = 0;
 
         items.forEach((item, index) => {
-            const subtotal = item.price * item.quantity;
-            grandTotal += subtotal;
-
             html += `
                 <tr>
-                    <td class="p-2.5 w-5/12">
+                    <td class="p-2.5 w-6/12">
                         <span class="font-medium text-slate-800 line-clamp-1 text-xs" title="${item.name}">${item.name}</span>
                     </td>
-                    <td class="p-2.5 w-2/12 text-slate-500 font-mono text-[11px]">${item.part_number || 'N/A'}</td>
-                    <td class="p-2.5 w-2/12 font-medium">£${parseFloat(item.price).toFixed(2)}</td>
-                    <td class="p-2.5 w-1/12 text-center">
+                    <td class="p-2.5 w-3/12 text-slate-500 font-mono text-[11px]">${item.part_number || 'N/A'}</td>
+                    <td class="p-2.5 w-2/12 text-center">
                         <div class="inline-flex items-center border rounded border-slate-300 overflow-hidden">
                             <button type="button" onclick="updateQty(${index}, -1)" class="px-1.5 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-600 text-[10px] font-bold">-</button>
                             <span class="px-2 py-0.5 text-xs font-semibold">${item.quantity}</span>
                             <button type="button" onclick="updateQty(${index}, 1)" class="px-1.5 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-600 text-[10px] font-bold">+</button>
                         </div>
                     </td>
-                    <td class="p-2.5 w-2/12 text-right font-bold text-sky-900">£${subtotal.toFixed(2)}</td>
                     <td class="p-2.5 w-1/12 text-center">
                         <button type="button" onclick="removeRequestItem(${index})" class="text-rose-500 hover:text-rose-700 p-1">
                             <i class="fa-solid fa-trash text-xs"></i>
@@ -191,7 +178,6 @@
         });
 
         itemsList.innerHTML = html;
-        grandTotalEl.innerText = `£${grandTotal.toFixed(2)}`;
     }
 
     function updateQty(index, delta) {

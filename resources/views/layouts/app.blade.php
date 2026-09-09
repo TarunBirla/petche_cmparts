@@ -4,9 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Primary Meta Tags -->
     <title>@yield('title', 'Petchemparts - Industrial & Petrochemical Parts')</title>
+    <meta name="description" content="@yield('meta_description', 'Petchemparts is the UK\'s leading independent reseller of OEM spare parts, MRO consumables, valves, transmitters, flow meters and technical supplies for the petrochemical and energy sectors.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'petchemparts, industrial spares, oem parts, petrochemical spares, valves, transmitters, flow meters, mro equipment, loughton uk')">
+    <meta name="robots" content="@yield('meta_robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')">
+    <meta name="author" content="Petchemparts">
+
+    <!-- Canonical Link -->
+    <link rel="canonical" href="@yield('canonical_url', url()->current())">
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:url" content="@yield('canonical_url', url()->current())">
+    <meta property="og:title" content="@yield('title', 'Petchemparts - Industrial & Petrochemical Parts')">
+    <meta property="og:description" content="@yield('meta_description', 'Petchemparts is the UK\'s leading independent reseller of OEM spare parts, MRO consumables, and technical supplies for the petrochemical, oil & gas, and energy sectors.')">
+    <meta property="og:image" content="@yield('og_image', asset('images/newlogo.png'))">
+    <meta property="og:site_name" content="Petchemparts">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="@yield('canonical_url', url()->current())">
+    <meta name="twitter:title" content="@yield('title', 'Petchemparts - Industrial & Petrochemical Parts')">
+    <meta name="twitter:description" content="@yield('meta_description', 'Petchemparts is the UK\'s leading independent reseller of OEM spare parts, MRO consumables, and technical supplies for the petrochemical and energy sectors.')">
+    <meta name="twitter:image" content="@yield('og_image', asset('images/newlogo.png'))">
 
     <link rel="icon" type="image/png" href="{{ asset('images/favlogo.png') }}">
+
+    <!-- JSON-LD Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "{{ url('/') }}/#organization",
+          "name": "Petchemparts",
+          "legalName": "Pearlcon Business Services Ltd",
+          "url": "{{ url('/') }}",
+          "logo": "{{ asset('images/newlogo.png') }}",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+44-1234440530",
+            "contactType": "sales",
+            "email": "Sales@petchemparts.com",
+            "areaServed": "Worldwide",
+            "availableLanguage": "English"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "{{ url('/') }}/#website",
+          "url": "{{ url('/') }}",
+          "name": "Petchemparts",
+          "description": "UK's leading reseller of OEM industrial, petrochemical, oil & gas spare parts, valves, actuators & MRO equipment.",
+          "publisher": {
+            "@id": "{{ url('/') }}/#organization"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "{{ route('products.index') }}?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
+    }
+    </script>
+
+    @yield('structured_data')
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
