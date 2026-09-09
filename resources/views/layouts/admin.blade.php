@@ -7,7 +7,7 @@
     <title>@yield('title', 'Admin Dashboard') - Petchemparts</title>
 
     <!-- Favicon Icon -->
-    <link rel="icon" type="image/png" href="{{ asset('images/favlogo.jpeg') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favlogo.png') }}">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -67,7 +67,7 @@
         <div>
             <!-- Sidebar Header / Logo -->
             <div class="h-20 bg-[#0A4744] flex items-center px-6 border-b border-slate-800 gap-3">
-                <img class="h-9 w-auto bg-white p-1 rounded" src="{{ asset('images/newlogo.jpeg') }}" alt="Petchemparts Logo">
+                <img class="h-9 w-auto bg-white p-1 rounded" src="{{ asset('images/newlogo.png') }}" alt="Petchemparts Logo">
                 <span class="font-extrabold text-white text-base tracking-wide">Admin Panel</span>
             </div>
 

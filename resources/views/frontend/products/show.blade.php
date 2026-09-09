@@ -27,26 +27,44 @@
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 mb-12">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             
-            <!-- Left Column: Multi-Image Gallery -->
-            <div>
-                @php 
-                    $images = $product->images ?? [];
-                    $mainImage = (!empty($images) && isset($images[0])) ? asset($images[0]) : asset('images/newlogo.jpeg');
-                @endphp
-                
-                <div class="border rounded-2xl bg-slate-50 overflow-hidden h-96 flex items-center justify-center p-4 mb-4 border-slate-200">
-                    <img id="main-product-image" src="{{ $mainImage }}" alt="{{ $product->name }}" class="max-h-full max-w-full object-contain transition">
+            <!-- Left Column: Technical Overview & OEM Details Card -->
+            <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-sky-100 text-[var(--primary-dark)] flex items-center justify-center text-xl font-bold mb-4 shadow-sm">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+
+                    <h3 class="font-bold text-base text-slate-900 mb-1">Technical Overview</h3>
+                    <p class="text-xs text-slate-500 mb-5 leading-relaxed">Verified OEM industrial spare part catalogued for petrochemical & MRO procurement.</p>
+
+                    <div class="space-y-2.5 text-xs">
+                        <div class="flex justify-between py-2 border-b border-slate-200">
+                            <span class="text-slate-500 font-medium">Manufacturer:</span>
+                            <span class="font-bold text-slate-800">{{ $product->manufacturer->name ?? 'N/A' }}</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-slate-200">
+                            <span class="text-slate-500 font-medium">Category:</span>
+                            <span class="font-bold text-slate-800">{{ $product->category->name ?? 'N/A' }}</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-slate-200">
+                            <span class="text-slate-500 font-medium">Sub-Category:</span>
+                            <span class="font-bold text-slate-800">{{ $product->subCategory->name ?? 'None' }}</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-slate-200">
+                            <span class="text-slate-500 font-medium">Part Number:</span>
+                            <span class="font-mono font-bold text-sky-900">{{ $product->part_number }}</span>
+                        </div>
+                        <div class="flex justify-between py-2">
+                            <span class="text-slate-500 font-medium">Model Number:</span>
+                            <span class="font-mono font-bold text-sky-900">{{ $product->model_number }}</span>
+                        </div>
+                    </div>
                 </div>
 
-                @if(count($images) > 1)
-                    <div class="flex gap-3 overflow-x-auto pb-2">
-                        @foreach($images as $index => $img)
-                            <button type="button" onclick="changeMainImage('{{ asset($img) }}')" class="w-16 h-16 border-2 rounded-lg bg-slate-50 p-1 flex-shrink-0 hover:border-sky-500 focus:border-sky-600 transition">
-                                <img src="{{ asset($img) }}" alt="Thumbnail {{ $index+1 }}" class="w-full h-full object-contain">
-                            </button>
-                        @endforeach
-                    </div>
-                @endif
+                <div class="mt-6 pt-4 border-t border-slate-200 flex items-center gap-2 text-[11px] text-slate-500">
+                    <i class="fa-solid fa-circle-check text-emerald-600 text-sm"></i>
+                    <span>Guaranteed Genuine OEM Industrial Part</span>
+                </div>
             </div>
 
             <!-- Right Column: Product Specs & Quote Action -->
@@ -169,20 +187,22 @@
             <h3 class="font-bold text-xl text-slate-900 mb-6">Related Products in Category</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                 @foreach($relatedProducts as $rel)
-                    @php 
-                        $relImg = (!empty($rel->images) && isset($rel->images[0])) ? asset($rel->images[0]) : asset('images/newlogo.jpeg');
-                    @endphp
-                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition p-4">
-                        <div class="h-36 w-full bg-slate-50 rounded-xl overflow-hidden mb-3 border border-slate-100 flex items-center justify-center">
-                            <img src="{{ $relImg }}" alt="{{ $rel->name }}" class="h-full w-full object-contain p-2">
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition p-4 flex flex-col justify-between">
+                        <div>
+                            <div class="text-[10px] font-bold text-[var(--primary-dark)] uppercase tracking-wider mb-1.5">
+                                {{ $rel->manufacturer->name ?? 'Industrial' }}
+                            </div>
+                            <h4 class="font-bold text-xs text-slate-900 line-clamp-2 hover:text-sky-600 mb-2">
+                                <a href="{{ route('products.show', $rel->slug) }}">{{ $rel->name }}</a>
+                            </h4>
+                            <div class="text-[11px] text-slate-500 mb-3 font-mono">P#: {{ $rel->part_number }}</div>
                         </div>
-                        <h4 class="font-bold text-xs text-slate-900 line-clamp-2 hover:text-sky-600 mb-1">
-                            <a href="{{ route('products.show', $rel->slug) }}">{{ $rel->name }}</a>
-                        </h4>
-                        <div class="text-[11px] font-bold text-sky-900 mb-3">£{{ number_format($rel->price, 2) }}</div>
-                        <a href="{{ route('products.show', $rel->slug) }}" class="block text-center w-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold py-1.5 rounded-lg transition">
-                            View Product
-                        </a>
+                        <div>
+                            <div class="text-[11px] font-bold text-sky-900 mb-3">£{{ number_format($rel->price, 2) }}</div>
+                            <a href="{{ route('products.show', $rel->slug) }}" class="block text-center w-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold py-1.5 rounded-lg transition">
+                                View Product
+                            </a>
+                        </div>
                     </div>
                 @endforeach
             </div>
@@ -210,7 +230,7 @@
         const name = "{{ addslashes($product->name) }}";
         const partNumber = "{{ addslashes($product->part_number) }}";
         const price = {{ $product->price }};
-        const image = "{{ (!empty($images) && isset($images[0])) ? $images[0] : 'images/newlogo.jpeg' }}";
+        const image = "{{ (!empty($images) && isset($images[0])) ? $images[0] : 'images/newlogo.png' }}";
 
         let items = getRequestItems();
         let existing = items.find(i => i.product_id === productId);

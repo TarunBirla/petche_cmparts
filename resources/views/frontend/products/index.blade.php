@@ -124,35 +124,32 @@
             @if($products->count() > 0)
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     @foreach($products as $prod)
-                        @php 
-                            $img = (!empty($prod->images) && isset($prod->images[0])) ? asset($prod->images[0]) : asset('images/newlogo.jpeg');
-                        @endphp
                         <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition flex flex-col justify-between">
-                            <div class="p-4">
-                                <div class="relative h-44 w-full bg-slate-50 rounded-xl overflow-hidden mb-3 border border-slate-100 flex items-center justify-center">
-                                    <img src="{{ $img }}" alt="{{ $prod->name }}" class="h-full w-full object-contain p-2">
-                                    <span class="absolute top-2 right-2 bg-[var(--primary-dark)] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-                                        {{ $prod->manufacturer->name ?? 'Industrial' }}
-                                    </span>
-                                </div>
-
-                                <div class="text-[10px] font-semibold text-[var(--primary-dark)] uppercase tracking-wide mb-1">
-                                    {{ $prod->category->name ?? 'Equipment' }}
+                            <div class="p-5">
+                                <div class="mb-3 space-y-1.5">
+                                    <div class="text-[10px] font-bold text-[var(--primary-dark)] uppercase tracking-wide truncate">
+                                        {{ $prod->category->name ?? 'Equipment' }}
+                                    </div>
+                                    <div>
+                                        <span class="inline-block bg-[var(--primary-dark)] text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm max-w-full truncate" title="{{ $prod->manufacturer->name ?? 'Industrial' }}">
+                                            {{ $prod->manufacturer->name ?? 'Industrial' }}
+                                        </span>
+                                    </div>
                                 </div>
                                 
-                                <h3 class="font-bold text-sm text-slate-900 line-clamp-2 hover:text-[var(--primary-dark)] transition mb-2">
+                                <h3 class="font-bold text-sm text-slate-900 line-clamp-2 hover:text-[var(--primary-dark)] transition mb-3 min-h-[2.5rem]">
                                     <a href="{{ route('products.show', $prod->slug) }}">{{ $prod->name }}</a>
                                 </h3>
 
-                                <div class="text-xs text-slate-500 space-y-1 mb-3">
+                                <div class="text-xs text-slate-500 space-y-1.5 mb-3 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
                                     <div><strong class="text-slate-700">Part #:</strong> {{ $prod->part_number }}</div>
                                     <div><strong class="text-slate-700">Model #:</strong> {{ $prod->model_number }}</div>
                                 </div>
                             </div>
 
-                            <div class="px-4 pb-4 pt-2 border-t border-slate-100 flex items-center justify-between">
+                            <div class="px-4 pb-4 pt-3 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
                                 <div>
-                                    <span class="text-[10px] text-slate-400 block">Unit Price:</span>
+                                    <span class="text-[10px] text-slate-400 block uppercase">Unit Price:</span>
                                     <span class="text-base font-bold text-sky-900">£{{ number_format($prod->price, 2) }}</span>
                                 </div>
 
@@ -160,7 +157,7 @@
                                     <a href="{{ route('products.show', $prod->slug) }}" class="bg-slate-100 hover:bg-slate-200 text-slate-700 p-2 rounded-lg text-xs" title="View Details">
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
-                                    <button onclick="addToRequest({{ $prod->id }}, '{{ addslashes($prod->name) }}', '{{ addslashes($prod->part_number) }}', {{ $prod->price }}, '{{ $img }}', this)" class="bg-[var(--primary-dark)] hover:bg-[var(--primary-dark)] text-white text-xs font-semibold px-3 py-2 rounded-lg transition flex items-center gap-1 shadow-sm shadow-sky-200">
+                                    <button onclick="addToRequest({{ $prod->id }}, '{{ addslashes($prod->name) }}', '{{ addslashes($prod->part_number) }}', {{ $prod->price }}, '', this)" class="bg-[var(--primary-dark)] hover:bg-sky-700 text-white text-xs font-semibold px-3 py-2 rounded-lg transition flex items-center gap-1 shadow-sm">
                                         <i class="fa-solid fa-plus"></i>
                                         <span>Request</span>
                                     </button>

@@ -165,16 +165,11 @@
         items.forEach((item, index) => {
             const subtotal = item.price * item.quantity;
             grandTotal += subtotal;
-            const fallbackImg = "{{ asset('images/logo.jpg') }}";
-            const itemImg = item.image ? "{{ asset('') }}" + item.image : fallbackImg;
 
             html += `
                 <tr>
                     <td class="p-2.5 w-5/12">
-                        <div class="flex items-center gap-2">
-                            <img src="${itemImg}" alt="${item.name}" class="w-8 h-8 object-cover rounded border flex-shrink-0">
-                            <span class="font-medium text-slate-800 line-clamp-1 text-xs" title="${item.name}">${item.name}</span>
-                        </div>
+                        <span class="font-medium text-slate-800 line-clamp-1 text-xs" title="${item.name}">${item.name}</span>
                     </td>
                     <td class="p-2.5 w-2/12 text-slate-500 font-mono text-[11px]">${item.part_number || 'N/A'}</td>
                     <td class="p-2.5 w-2/12 font-medium">£${parseFloat(item.price).toFixed(2)}</td>
