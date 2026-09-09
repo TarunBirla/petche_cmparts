@@ -13,21 +13,31 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::where('is_active', true)
-            ->with(['subCategories' => function ($q) {
-                $q->where('is_active', true);
-            }])
+            ->with([
+                'subCategories' => function ($q) {
+                    $q->where('is_active', true);
+                }
+            ])
             ->withCount('products')
             ->get();
-            
+
         $manufacturers = Manufacturer::where('is_active', true)
             ->withCount('products')
             ->get();
 
         $topCategories = Category::where('is_active', true)
-            ->with(['products' => function ($q) {
-                $q->where('is_active', true)->with(['manufacturer', 'category', 'pdf'])->latest()->take(12);
-            }])
-            ->withCount('products')
+            ->with([
+                'products' => function ($q) {
+                    $q->where('is_active', true)
+                        ->with(['manufacturer', 'category', 'pdf'])
+                        ->latest();
+                }
+            ])
+            ->withCount([
+                'products' => function ($q) {
+                    $q->where('is_active', true);
+                }
+            ])
             ->take(5)
             ->get();
 
@@ -43,9 +53,11 @@ class HomeController extends Controller
     public function categories()
     {
         $categories = Category::where('is_active', true)
-            ->with(['subCategories' => function ($q) {
-                $q->where('is_active', true);
-            }])
+            ->with([
+                'subCategories' => function ($q) {
+                    $q->where('is_active', true);
+                }
+            ])
             ->withCount('products')
             ->paginate(6);
 
