@@ -65,7 +65,7 @@
                         <i class="fa-solid fa-microchip"></i>
                     </div>
 
-                    <h3 class="font-bold text-base text-slate-900 mb-1">Technical Overview</h3>
+                    <h2 class="font-bold text-base text-slate-900 mb-1">Technical Overview</h2>
                     <p class="text-xs text-slate-500 mb-5 leading-relaxed">Verified OEM industrial spare part catalogued for petrochemical & MRO procurement.</p>
 
                     <div class="space-y-2.5 text-xs">
@@ -149,7 +149,7 @@
                     <!-- Short Summary -->
                     @if($product->summary)
                         <div class="text-sm text-slate-600 mb-6 leading-relaxed bg-sky-50/50 p-4 rounded-xl border border-sky-100">
-                            <h4 class="font-bold text-xs uppercase text-sky-900 mb-1">Product Specification</h4>
+                            <h3 class="font-bold text-xs uppercase text-sky-900 mb-1">Product Specification</h3>
                             {{ $product->summary }}
                         </div>
                     @endif
@@ -196,9 +196,9 @@
         <!-- Detailed Description Section -->
         @if($product->description)
             <div class="mt-12 border-t border-slate-200 pt-8">
-                <h3 class="font-bold text-lg text-slate-900 mb-4 flex items-center gap-2">
+                <h2 class="font-bold text-lg text-slate-900 mb-4 flex items-center gap-2">
                     <i class="fa-solid fa-file-lines text-sky-600"></i> Detailed Specifications & Description
-                </h3>
+                </h2>
                 <div class="prose max-w-none text-slate-600 text-sm leading-relaxed whitespace-pre-line bg-slate-50 p-6 rounded-2xl border border-slate-200">
                     {{ $product->description }}
                 </div>
@@ -209,7 +209,7 @@
     <!-- Related Products -->
     @if($relatedProducts->count() > 0)
         <div class="mt-12">
-            <h3 class="font-bold text-xl text-slate-900 mb-6">Related Products in Category</h3>
+            <h2 class="font-bold text-xl text-slate-900 mb-6">Related Products in Category</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                 @foreach($relatedProducts as $rel)
                     <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition p-4 flex flex-col justify-between">
@@ -217,9 +217,9 @@
                             <div class="text-[10px] font-bold text-[var(--primary-dark)] uppercase tracking-wider mb-1.5">
                                 {{ $rel->manufacturer->name ?? 'Industrial' }}
                             </div>
-                            <h4 class="font-bold text-xs text-slate-900 line-clamp-2 hover:text-sky-600 mb-2">
+                            <h3 class="font-bold text-xs text-slate-900 line-clamp-2 hover:text-sky-600 mb-2">
                                 <a href="{{ route('products.show', $rel->slug) }}">{{ $rel->name }}</a>
-                            </h4>
+                            </h3>
                             <div class="text-[11px] text-slate-500 mb-3 font-mono">P#: {{ $rel->part_number }}</div>
                         </div>
                         <div>

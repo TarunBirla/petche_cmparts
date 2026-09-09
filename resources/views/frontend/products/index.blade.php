@@ -25,9 +25,9 @@
         <div class="lg:col-span-1">
             <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm sticky top-28 space-y-6">
                 <div class="flex justify-between items-center border-b pb-3">
-                    <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                    <h2 class="font-bold text-slate-900 text-base flex items-center gap-2">
                         <i class="fa-solid fa-filter text-[var(--primary-dark)]"></i> Filter Products
-                    </h3>
+                    </h2>
                     <a href="{{ route('products.index') }}" class="text-xs text-[var(--primary-dark)] hover:underline font-medium">Reset All</a>
                 </div>
 
@@ -170,7 +170,7 @@
                     <div class="w-16 h-16 bg-sky-50 text-[var(--primary-dark)] rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-                    <h3 class="font-bold text-slate-800 text-lg">No Products Found</h3>
+                    <h2 class="font-bold text-slate-800 text-lg">No Products Found</h2>
                     <p class="text-xs text-slate-500 mt-1 max-w-sm mx-auto">We couldn't find any products matching your search criteria. Try adjusting your filters or search keywords.</p>
                     <a href="{{ route('products.index') }}" class="inline-block mt-4 bg-[var(--primary-dark)] hover:bg-[var(--primary-dark)] text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Clear Search</a>
                 </div>

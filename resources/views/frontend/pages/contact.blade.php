@@ -28,9 +28,9 @@
         <div class="lg:col-span-1 space-y-6">
             
             <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-                <h3 class="font-bold text-slate-900 text-base border-b pb-3 flex items-center gap-2">
+                <h2 class="font-bold text-slate-900 text-base border-b pb-3 flex items-center gap-2">
                     <i class="fa-solid fa-headset text-sky-600"></i> Direct Contact Info
-                </h3>
+                </h2>
 
                 <div>
                     <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Sales Helpline</span>
@@ -58,9 +58,9 @@
             </div>
 
             <div class="bg-[var(--primary-dark)] text-white p-6 rounded-2xl shadow-lg border border-sky-800 space-y-3">
-                <h4 class="font-bold text-sm text-sky-200 flex items-center gap-2">
+                <h3 class="font-bold text-sm text-sky-200 flex items-center gap-2">
                     <i class="fa-solid fa-shield-halved"></i> Global Petchemparts Spare Sourcing
-                </h4>
+                </h3>
                 <p class="text-xs text-sky-100 leading-relaxed">
                     Spanning more than 500 brands from UK, Europe, and USA. Fast turnaround and end-to-end global shipping.
                 </p>
@@ -70,7 +70,7 @@
 
         <!-- Contact Form -->
         <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8">
-            <h3 class="font-bold text-xl text-slate-900 mb-2">Send Us a Direct Message</h3>
+            <h2 class="font-bold text-xl text-slate-900 mb-2">Send Us a Direct Message</h2>
             <p class="text-xs text-slate-500 mb-6">Fill out the form below and our technical engineers will respond within 24 hours.</p>
 
             <form action="{{ route('contact.submit') }}" method="POST" class="space-y-4">

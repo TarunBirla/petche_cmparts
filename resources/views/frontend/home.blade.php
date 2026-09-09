@@ -222,10 +222,10 @@
 <section class="py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="w-full space-y-3 text-left">
-            <h3 class="font-display font-bold text-base sm:text-lg text-[var(--text)] flex justify-start items-center gap-2">
+            <h2 class="font-display font-bold text-base sm:text-lg text-[var(--text)] flex justify-start items-center gap-2">
                 <i class="fa-solid fa-scale-balanced text-primary"></i>
                 Legal Disclaimer
-            </h3>
+            </h2>
             <p class="text-[15px] text-[var(--text-muted)] leading-relaxed text-left max-w-5xl">
                 Petchemparts is not an authorized dealer, agent or affiliate of any of the designer, brands, or manufacturer, the products of which are offered for sale on www.petchemparts.com. All trademarks, brand names, and logos mentioned are used for identification purposes only and are registered trademarks of their respective owners who reserve the rights of ownership. The use of trademark, brand name or product on our website is not intended to suggest that the company, trademark or brand is affiliated to or endorses our website. All products are 100% genuine and legally purchased from authorized sources.
             </p>
