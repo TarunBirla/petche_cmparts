@@ -254,7 +254,7 @@
         const name = "{{ addslashes($product->name) }}";
         const partNumber = "{{ addslashes($product->part_number) }}";
         const price = {{ $product->price }};
-        const image = "{{ (!empty($images) && isset($images[0])) ? $images[0] : 'images/newlogo.png' }}";
+        const image = "{{ (!empty($images) && isset($images[0])) ? $images[0] : 'images/logo.jpeg' }}";
 
         let items = getRequestItems();
         let existing = items.find(i => i.product_id === productId);

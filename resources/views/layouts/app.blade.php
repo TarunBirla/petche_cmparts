@@ -19,7 +19,7 @@
     <meta property="og:url" content="@yield('canonical_url', url()->current())">
     <meta property="og:title" content="@yield('title', 'Sparelyx - Industrial & Petrochemical Parts')">
     <meta property="og:description" content="@yield('meta_description', 'UK\'s leading reseller of OEM industrial, petrochemical, oil & gas spare parts, valves, transmitters, flow meters & MRO equipment. Direct quotation.')">
-    <meta property="og:image" content="@yield('og_image', asset('images/newlogo.png'))">
+    <meta property="og:image" content="@yield('og_image', asset('images/logo.jpeg'))">
     <meta property="og:site_name" content="Sparelyx">
 
     <!-- Twitter Card Meta Tags -->
@@ -27,9 +27,9 @@
     <meta name="twitter:url" content="@yield('canonical_url', url()->current())">
     <meta name="twitter:title" content="@yield('title', 'Sparelyx - Industrial & Petrochemical Parts')">
     <meta name="twitter:description" content="@yield('meta_description', 'UK\'s leading reseller of OEM industrial, petrochemical, oil & gas spare parts, valves, transmitters, flow meters & MRO equipment. Direct quotation.')">
-    <meta name="twitter:image" content="@yield('og_image', asset('images/newlogo.png'))">
+    <meta name="twitter:image" content="@yield('og_image', asset('images/logo.jpeg'))">
 
-    <link rel="icon" type="image/png" href="{{ asset('images/favlogo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.jpeg') }}">
 
     <!-- JSON-LD Structured Data (Schema.org) -->
     <script type="application/ld+json">
@@ -42,7 +42,7 @@
           "name": "Sparelyx",
           "legalName": "Pearlcon Business Services Ltd",
           "url": "{{ url('/') }}",
-          "logo": "{{ asset('images/newlogo.png') }}",
+          "logo": "{{ asset('images/logo.jpeg') }}",
           "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+44-1234440530",
@@ -167,7 +167,7 @@
 
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center gap-2.5">
-                        <img class="h-11 w-auto object-contain" src="{{ asset('images/newlogo.png') }}" alt="Sparelyx Logo">
+                        <img class="h-11 w-auto object-contain" src="{{ asset('images/logo.jpeg') }}" alt="Sparelyx Logo">
                     </a>
                 </div>
 
@@ -330,7 +330,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center gap-2 mb-4">
-                        <img class="h-10 w-auto bg-white p-1 rounded" src="{{ asset('images/newlogo.png') }}" alt="Sparelyx">
+                        <img class="h-10 w-auto bg-white p-1 rounded" src="{{ asset('images/logo.jpeg') }}" alt="Sparelyx">
                     </div>
                     <p class="text-white/50 text-xs leading-relaxed mb-3">
                         UK's leading industrial, oil and gas spare parts, consumable & MRO reseller globally.
