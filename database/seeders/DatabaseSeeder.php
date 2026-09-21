@@ -254,7 +254,7 @@ EOT,
             'slug' => 'terms-and-conditions',
             'content' => <<<EOT
 <h3>TERMS AND CONDITIONS</h3>
-<p>The www.petchemparts.com web site is owned and operated by Pearlcon Business Services Ltd, United Kingdom.</p>
+<p>The https://sparelyx.com web site is owned and operated by Pearlcon Business Services Ltd, United Kingdom.</p>
 EOT,
             'is_active' => true,
         ]);
