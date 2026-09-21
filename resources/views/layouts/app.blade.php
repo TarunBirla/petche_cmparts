@@ -167,7 +167,7 @@
 
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center gap-2.5">
-                        <img class="h-14 w-auto object-contain" src="{{ asset('images/logo.jpeg') }}" alt="Sparelyx Logo">
+                        <img class="h-18 w-auto object-contain" src="{{ asset('images/logo.jpeg') }}" alt="Sparelyx Logo">
                     </a>
                 </div>
 
