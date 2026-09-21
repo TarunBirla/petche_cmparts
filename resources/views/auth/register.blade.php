@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Register Account - Petchemparts')
+@section('title', 'Register Account - Sparelyx')
 
 @section('content')
 <div class="py-12 bg-slate-50 min-h-[80vh] flex items-center justify-center px-4">
     <div class="bg-white w-full max-w-lg rounded-2xl shadow-xl p-8 border border-slate-200">
         <div class="text-center mb-6">
-            <img class="h-12 w-auto mx-auto mb-3 object-contain" src="{{ asset('images/newlogo.png') }}" alt="Petchemparts Logo">
+            <img class="h-12 w-auto mx-auto mb-3 object-contain" src="{{ asset('images/newlogo.png') }}" alt="Sparelyx Logo">
             <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Create Customer Account</h1>
             <p class="text-xs text-slate-500 mt-1">Register to submit quote requests & track equipment inquiries</p>
         </div>

@@ -23,7 +23,7 @@ class ContactMessageCustomerMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'We Received Your Inquiry - Petchemparts',
+            subject: 'We Received Your Inquiry - Sparelyx',
         );
     }
 

@@ -21,13 +21,13 @@
 <body>
     <div class="container">
         <div class="header">
-            <h2>Petchemparts</h2>
+            <h2>Sparelyx</h2>
             <p>Quote Request Confirmation: #{{ $productRequest->request_number }}</p>
         </div>
 
         <div class="section">
             <p>Dear <strong>{{ $productRequest->customer_name }}</strong>,</p>
-            <p>Thank you for submitting your quote request to Petchemparts! We have received your inquiry and our technical sales team is reviewing your requested items. You will receive a direct quotation shorty.</p>
+            <p>Thank you for submitting your quote request to Sparelyx! We have received your inquiry and our technical sales team is reviewing your requested items. You will receive a direct quotation shorty.</p>
         </div>
 
         <div class="section">
@@ -76,7 +76,7 @@
 
         <div class="footer">
             <p>If you have urgent inquiries, please contact sales at <strong>sales@petchemparts.com</strong>.</p>
-            <p>&copy; {{ date('Y') }} Petchemparts UK. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} Sparelyx UK. All rights reserved.</p>
         </div>
     </div>
 </body>

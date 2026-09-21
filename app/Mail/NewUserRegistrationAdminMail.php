@@ -23,7 +23,7 @@ class NewUserRegistrationAdminMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Customer Registered: ' . $this->user->name . ' - Petchemparts',
+            subject: 'New Customer Registered: ' . $this->user->name . ' - Sparelyx',
         );
     }
 

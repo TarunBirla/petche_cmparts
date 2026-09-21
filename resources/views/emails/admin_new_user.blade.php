@@ -15,11 +15,11 @@
 <body>
     <div class="container">
         <div class="header">
-            <h2>Petchemparts Admin Alert</h2>
+            <h2>Sparelyx Admin Alert</h2>
             <p style="margin:5px 0 0 0;">New Customer Registration</p>
         </div>
         <div class="content">
-            <p>A new customer account has been registered on Petchemparts:</p>
+            <p>A new customer account has been registered on Sparelyx:</p>
             <table style="width:100%; border-collapse:collapse; margin-top:10px;">
                 <tr><td style="padding:8px; border:1px solid #ddd; font-weight:bold;">Name:</td><td style="padding:8px; border:1px solid #ddd;">{{ $user->name }}</td></tr>
                 <tr><td style="padding:8px; border:1px solid #ddd; font-weight:bold;">Email:</td><td style="padding:8px; border:1px solid #ddd;">{{ $user->email }}</td></tr>

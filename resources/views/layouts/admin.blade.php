@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Admin Dashboard') - Petchemparts</title>
+    <title>@yield('title', 'Admin Dashboard') - Sparelyx</title>
 
     <!-- Favicon Icon -->
     <link rel="icon" type="image/png" href="{{ asset('images/favlogo.png') }}">
@@ -67,7 +67,7 @@
         <div>
             <!-- Sidebar Header / Logo -->
             <div class="h-20 bg-[#0A4744] flex items-center px-6 border-b border-slate-800 gap-3">
-                <img class="h-9 w-auto bg-white p-1 rounded" src="{{ asset('images/newlogo.png') }}" alt="Petchemparts Logo">
+                <img class="h-9 w-auto bg-white p-1 rounded" src="{{ asset('images/newlogo.png') }}" alt="Sparelyx Logo">
                 <span class="font-extrabold text-white text-base tracking-wide">Admin Panel</span>
             </div>
 
@@ -152,7 +152,7 @@
         <header class="bg-white border-b border-slate-200 h-20 px-8 flex justify-between items-center sticky top-0 z-30">
             <div>
                 <h2 class="text-xl font-bold text-slate-900">@yield('title', 'Admin Dashboard')</h2>
-                <p class="text-xs text-slate-500">Petchemparts Administration</p>
+                <p class="text-xs text-slate-500">Sparelyx Administration</p>
             </div>
 
             <div class="flex items-center gap-4">

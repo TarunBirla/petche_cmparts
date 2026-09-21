@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'All Industrial Products - Petchemparts')
+@section('title', 'All Industrial Products - Sparelyx')
 
 @section('content')
 
@@ -9,7 +9,7 @@
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <div>
             <h1 class="text-2xl sm:text-3xl font-extrabold">All Industrial Products</h1>
-            <p class="text-sky-200 text-xs sm:text-sm mt-1">Browse our complete inventory of industrial equipment and Petchemparts.</p>
+            <p class="text-sky-200 text-xs sm:text-sm mt-1">Browse our complete inventory of industrial equipment and Sparelyx.</p>
         </div>
 
         <div class="text-xs text-sky-200">

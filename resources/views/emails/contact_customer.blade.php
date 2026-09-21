@@ -15,11 +15,11 @@
 <body>
     <div class="container">
         <div class="header">
-            <h2>Petchemparts</h2>
+            <h2>Sparelyx</h2>
         </div>
         <div class="content">
             <p>Dear <strong>{{ $contactMessage->name }}</strong>,</p>
-            <p>Thank you for contacting Petchemparts! We have received your message regarding <strong>"{{ $contactMessage->subject }}"</strong>.</p>
+            <p>Thank you for contacting Sparelyx! We have received your message regarding <strong>"{{ $contactMessage->subject }}"</strong>.</p>
             <p>Our sales and support team is reviewing your inquiry and will respond to you shortly at <strong>{{ $contactMessage->email }}</strong>.</p>
             <p><strong>Copy of your message:</strong></p>
             <div style="background: #f8fafc; padding: 15px; border-radius: 6px; border: 1px solid #e2e8f0; font-size: 13px;">
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="footer">
-            <p>&copy; {{ date('Y') }} Petchemparts UK. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} Sparelyx UK. All rights reserved.</p>
         </div>
     </div>
 </body>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'All Manufacturers - Petchemparts')
+@section('title', 'All Manufacturers - Sparelyx')
 
 @section('content')
 
@@ -12,7 +12,7 @@
                 Authorized & Sourced OEM Manufacturers
             </span>
             <h1 class="text-3xl sm:text-4xl font-extrabold">All Industrial Manufacturers</h1>
-            <p class="text-sky-200 text-xs sm:text-sm mt-1">Explore equipment from leading global manufacturers in oil, gas, and Petchemparts automation.</p>
+            <p class="text-sky-200 text-xs sm:text-sm mt-1">Explore equipment from leading global manufacturers in oil, gas, and Sparelyx automation.</p>
         </div>
 
         <div class="text-xs text-sky-200 bg-sky-800/60 px-4 py-2 rounded-xl border border-sky-700">

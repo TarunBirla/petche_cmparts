@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h2>Petchemparts - New Contact Inquiry</h2>
+            <h2>Sparelyx - New Contact Inquiry</h2>
         </div>
         <div class="content">
             <p><strong>From:</strong> {{ $contactMessage->name }} ({{ $contactMessage->email }})</p>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="footer">
-            <p>Sent to sales@petchemparts.com via Petchemparts Website Contact Form.</p>
+            <p>Sent to sales@petchemparts.com via Sparelyx Website Contact Form.</p>
         </div>
     </div>
 </body>

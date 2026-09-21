@@ -23,7 +23,7 @@ class UserWelcomeMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Welcome to Petchemparts - Account Created',
+            subject: 'Welcome to Sparelyx - Account Created',
         );
     }
 

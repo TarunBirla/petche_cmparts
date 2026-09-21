@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', $product->name . ' - Petchemparts')
-@section('meta_description', Str::limit(strip_tags($product->summary ?? $product->description ?? 'Buy ' . $product->name . ' (Part #: ' . $product->part_number . ', Model #: ' . $product->model_number . ') from Petchemparts.'), 155))
+@section('title', $product->name . ' - Sparelyx')
+@section('meta_description', Str::limit(strip_tags($product->summary ?? $product->description ?? 'Buy ' . $product->name . ' (Part #: ' . $product->part_number . ', Model #: ' . $product->model_number . ') from Sparelyx.'), 155))
 @section('canonical_url', route('products.show', $product->slug))
 
 @section('structured_data')
@@ -15,7 +15,7 @@
   "description": "{{ addslashes(Str::limit(strip_tags($product->summary ?? $product->description ?? $product->name), 200)) }}",
   "brand": {
     "@type": "Brand",
-    "name": "{{ addslashes($product->manufacturer->name ?? 'Petchemparts') }}"
+    "name": "{{ addslashes($product->manufacturer->name ?? 'Sparelyx') }}"
   },
   "category": "{{ addslashes($product->category->name ?? 'Industrial') }}",
   "offers": {

@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Primary Meta Tags -->
-    <title>@yield('title', 'Petchemparts - Industrial & Petrochemical Parts')</title>
+    <title>@yield('title', 'Sparelyx - Industrial & Petrochemical Parts')</title>
     <meta name="description" content="@yield('meta_description', 'UK\'s leading reseller of OEM industrial, petrochemical, oil & gas spare parts, valves, transmitters, flow meters & MRO equipment. Direct quotation.')">
-    <meta name="keywords" content="@yield('meta_keywords', 'petchemparts, industrial spares, oem parts, petrochemical spares, valves, transmitters, flow meters, mro equipment, loughton uk')">
+    <meta name="keywords" content="@yield('meta_keywords', 'Sparelyx, industrial spares, oem parts, petrochemical spares, valves, transmitters, flow meters, mro equipment, loughton uk')">
     <meta name="robots" content="@yield('meta_robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')">
-    <meta name="author" content="Petchemparts">
+    <meta name="author" content="Sparelyx">
 
     <!-- Canonical Link -->
     <link rel="canonical" href="@yield('canonical_url', url()->current())">
@@ -17,15 +17,15 @@
     <!-- Open Graph / Facebook Meta Tags -->
     <meta property="og:type" content="@yield('og_type', 'website')">
     <meta property="og:url" content="@yield('canonical_url', url()->current())">
-    <meta property="og:title" content="@yield('title', 'Petchemparts - Industrial & Petrochemical Parts')">
+    <meta property="og:title" content="@yield('title', 'Sparelyx - Industrial & Petrochemical Parts')">
     <meta property="og:description" content="@yield('meta_description', 'UK\'s leading reseller of OEM industrial, petrochemical, oil & gas spare parts, valves, transmitters, flow meters & MRO equipment. Direct quotation.')">
     <meta property="og:image" content="@yield('og_image', asset('images/newlogo.png'))">
-    <meta property="og:site_name" content="Petchemparts">
+    <meta property="og:site_name" content="Sparelyx">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="@yield('canonical_url', url()->current())">
-    <meta name="twitter:title" content="@yield('title', 'Petchemparts - Industrial & Petrochemical Parts')">
+    <meta name="twitter:title" content="@yield('title', 'Sparelyx - Industrial & Petrochemical Parts')">
     <meta name="twitter:description" content="@yield('meta_description', 'UK\'s leading reseller of OEM industrial, petrochemical, oil & gas spare parts, valves, transmitters, flow meters & MRO equipment. Direct quotation.')">
     <meta name="twitter:image" content="@yield('og_image', asset('images/newlogo.png'))">
 
@@ -39,7 +39,7 @@
         {
           "@type": "Organization",
           "@id": "{{ url('/') }}/#organization",
-          "name": "Petchemparts",
+          "name": "Sparelyx",
           "legalName": "Pearlcon Business Services Ltd",
           "url": "{{ url('/') }}",
           "logo": "{{ asset('images/newlogo.png') }}",
@@ -56,7 +56,7 @@
           "@type": "WebSite",
           "@id": "{{ url('/') }}/#website",
           "url": "{{ url('/') }}",
-          "name": "Petchemparts",
+          "name": "Sparelyx",
           "description": "UK's leading reseller of OEM industrial, petrochemical, oil & gas spare parts, valves, actuators & MRO equipment.",
           "publisher": {
             "@id": "{{ url('/') }}/#organization"
@@ -167,7 +167,7 @@
 
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center gap-2.5">
-                        <img class="h-11 w-auto object-contain" src="{{ asset('images/newlogo.png') }}" alt="Petchemparts Logo">
+                        <img class="h-11 w-auto object-contain" src="{{ asset('images/newlogo.png') }}" alt="Sparelyx Logo">
                     </a>
                 </div>
 
@@ -330,7 +330,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center gap-2 mb-4">
-                        <img class="h-10 w-auto bg-white p-1 rounded" src="{{ asset('images/newlogo.png') }}" alt="Petchemparts">
+                        <img class="h-10 w-auto bg-white p-1 rounded" src="{{ asset('images/newlogo.png') }}" alt="Sparelyx">
                     </div>
                     <p class="text-white/50 text-xs leading-relaxed mb-3">
                         UK's leading industrial, oil and gas spare parts, consumable & MRO reseller globally.
@@ -371,7 +371,7 @@
             </div>
 
             <div class="border-t border-white/10 mt-10 pt-6 text-center text-xs text-white/40">
-                &copy; 2026 | Petchemparts A Brand Unit of Pearlcon Business Services Ltd. UK. All rights reserved.
+                &copy; 2026 | Sparelyx A Brand Unit of Pearlcon Business Services Ltd. UK. All rights reserved.
             </div>
         </div>
     </footer>

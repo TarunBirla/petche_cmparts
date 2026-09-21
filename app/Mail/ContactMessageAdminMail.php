@@ -23,7 +23,7 @@ class ContactMessageAdminMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Contact Inquiry: ' . $this->contactMessage->subject . ' - Petchemparts',
+            subject: 'New Contact Inquiry: ' . $this->contactMessage->subject . ' - Sparelyx',
         );
     }
 
