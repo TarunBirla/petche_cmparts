@@ -330,7 +330,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center gap-2 mb-4">
-                        <img class="h-10 w-auto bg-white p-1 rounded" src="{{ asset('images/logo.jpeg') }}" alt="Sparelyx">
+                        <img class="h-12 w-auto bg-white p-1 rounded" src="{{ asset('images/logo.jpeg') }}" alt="Sparelyx">
                     </div>
                     <p class="text-white/50 text-xs leading-relaxed mb-3">
                         UK's leading industrial, oil and gas spare parts, consumable & MRO reseller globally.
