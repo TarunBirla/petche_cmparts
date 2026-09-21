@@ -29,7 +29,7 @@
             </table>
         </div>
         <div class="footer">
-            <p>This notification was automatically sent to sales@petchemparts.com.</p>
+            <p>This notification was automatically sent to sales@sparelyx.com.</p>
         </div>
     </div>
 </body>

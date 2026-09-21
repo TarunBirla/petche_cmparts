@@ -47,7 +47,7 @@
             "@type": "ContactPoint",
             "telephone": "+44-1234440530",
             "contactType": "sales",
-            "email": "Sales@petchemparts.com",
+            "email": "sales@sparelyx.com",
             "areaServed": "Worldwide",
             "availableLanguage": "English"
           }
@@ -366,7 +366,7 @@
                         38F Chigwell Lane, Oak Hill IND. EST. Loughton. IG10 3NY
                     </p>
                     <p class="text-xs text-white/70 mb-2"><i class="fa-solid fa-phone text-accent mr-1.5"></i> Office: <span class="spec-tag font-bold">0044-1234440530</span></p>
-                    <p class="text-xs text-white/70 mb-3"><i class="fa-solid fa-envelope text-accent mr-1.5"></i> Sales@petchemparts.com</p>
+                    <p class="text-xs text-white/70 mb-3"><i class="fa-solid fa-envelope text-accent mr-1.5"></i> sales@sparelyx.com</p>
                 </div>
             </div>
 

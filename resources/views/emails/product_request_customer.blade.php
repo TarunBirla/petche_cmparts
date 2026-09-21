@@ -75,7 +75,7 @@
         @endif
 
         <div class="footer">
-            <p>If you have urgent inquiries, please contact sales at <strong>sales@petchemparts.com</strong>.</p>
+            <p>If you have urgent inquiries, please contact sales at <strong>sales@sparelyx.com</strong>.</p>
             <p>&copy; {{ date('Y') }} Sparelyx UK. All rights reserved.</p>
         </div>
     </div>

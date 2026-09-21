@@ -53,9 +53,9 @@ class PageController extends Controller
             'message' => $request->message,
         ]);
 
-        // Send email alert to Admin (sales@petchemparts.com)
+        // Send email alert to Admin (sales@sparelyx.com)
         try {
-            Mail::to('sales@petchemparts.com')->send(new \App\Mail\ContactMessageAdminMail($contact));
+            Mail::to('sales@sparelyx.com')->send(new \App\Mail\ContactMessageAdminMail($contact));
         } catch (\Exception $e) {
             Log::error('Failed sending contact email alert to admin: ' . $e->getMessage());
         }

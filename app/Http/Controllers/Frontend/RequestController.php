@@ -59,9 +59,9 @@ class RequestController extends Controller
             }
         }
 
-        // Send Email Notification to Admin (sales@petchemparts.com)
+        // Send Email Notification to Admin (sales@sparelyx.com)
         try {
-            $adminEmail = 'sales@petchemparts.com';
+            $adminEmail = 'sales@sparelyx.com';
             Mail::to($adminEmail)->send(new ProductRequestSubmitted($productRequest));
         } catch (\Exception $e) {
             Log::error('Failed sending Product Request admin email: ' . $e->getMessage());

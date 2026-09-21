@@ -46,9 +46,9 @@ class RegisterController extends Controller
             \Illuminate\Support\Facades\Log::error('Failed sending User Welcome email: ' . $e->getMessage());
         }
 
-        // Send Alert Email to Admin (sales@petchemparts.com)
+        // Send Alert Email to Admin (sales@sparelyx.com)
         try {
-            \Illuminate\Support\Facades\Mail::to('sales@petchemparts.com')->send(new \App\Mail\NewUserRegistrationAdminMail($user));
+            \Illuminate\Support\Facades\Mail::to('sales@sparelyx.com')->send(new \App\Mail\NewUserRegistrationAdminMail($user));
         } catch (\Exception $e) {
             \Illuminate\Support\Facades\Log::error('Failed sending New User Admin Alert email: ' . $e->getMessage());
         }

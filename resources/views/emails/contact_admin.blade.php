@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="footer">
-            <p>Sent to sales@petchemparts.com via Sparelyx Website Contact Form.</p>
+            <p>Sent to sales@sparelyx.com via Sparelyx Website Contact Form.</p>
         </div>
     </div>
 </body>

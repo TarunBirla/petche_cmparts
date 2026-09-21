@@ -45,7 +45,7 @@
 
                 <div>
                     <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Email Inquiry</span>
-                    <a href="mailto:Sales@petchemparts.com" class="text-sky-600 font-bold text-sm hover:underline">Sales@petchemparts.com</a>
+                    <a href="mailto:sales@sparelyx.com" class="text-sky-600 font-bold text-sm hover:underline">sales@sparelyx.com</a>
                 </div>
 
                 <div>
