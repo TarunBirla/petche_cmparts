@@ -23,7 +23,7 @@ class ProductRequestCustomerConfirmation extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Quote Request Received: #' . $this->productRequest->request_number . ' - Petchemparts',
+            subject: 'Quote Request Received: #' . $this->productRequest->request_number . ' - Sparelyx',
         );
     }
 
