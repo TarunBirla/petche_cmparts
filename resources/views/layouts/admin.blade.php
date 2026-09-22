@@ -7,7 +7,7 @@
     <title>@yield('title', 'Admin Dashboard') - Sparelyx</title>
 
     <!-- Favicon Icon -->
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.jpeg') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -45,8 +45,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0F6B66;
-            --primary-dark: #0A4744;
+            /* --primary: #0F6B66;
+            --primary-dark: #0A4744; */
+            --primary:       #70B53E;
+            --primary-dark:  #4F8A28;
             --primary-light: #E7F4F3;
             --accent: #F2A541;
             --accent-dark: #C8811F;
@@ -67,7 +69,7 @@
         <div>
             <!-- Sidebar Header / Logo -->
             <div class="h-20 bg-[#0A4744] flex items-center px-6 border-b border-slate-800 gap-3">
-                <img class="h-9 w-auto bg-white p-1 rounded" src="{{ asset('images/logo.jpeg') }}" alt="Sparelyx Logo">
+                <img class="h-9 w-auto bg-white p-1 rounded" src="{{ asset('images/logo.png') }}" alt="Sparelyx Logo">
                 <span class="font-extrabold text-white text-base tracking-wide">Admin Panel</span>
             </div>
 
