@@ -45,6 +45,8 @@ class RequestController extends Controller
             'status' => 'pending',
         ]);
 
+        $firstProduct = null;
+        $productTitles = [];
         foreach ($request->items as $itemData) {
             $product = Product::find($itemData['product_id']);
             if ($product) {
@@ -56,7 +58,44 @@ class RequestController extends Controller
                     'price' => $product->price,
                     'quantity' => $itemData['quantity'],
                 ]);
+                if (!$firstProduct) {
+                    $firstProduct = $product;
+                }
+                $productTitles[] = $product->name . ($product->part_number ? " ({$product->part_number})" : "");
             }
+        }
+
+        // Record Quote Submission page visit event for analytics
+        try {
+            $userAgent = $request->header('User-Agent');
+            $browser = 'Other';
+            if (preg_match('/Edg/i', $userAgent)) $browser = 'Edge';
+            elseif (preg_match('/Chrome/i', $userAgent)) $browser = 'Chrome';
+            elseif (preg_match('/Safari/i', $userAgent)) $browser = 'Safari';
+            elseif (preg_match('/Firefox/i', $userAgent)) $browser = 'Firefox';
+
+            $platform = 'Other';
+            if (preg_match('/Windows/i', $userAgent)) $platform = 'Windows';
+            elseif (preg_match('/Macintosh|Mac OS X/i', $userAgent)) $platform = 'Mac';
+            elseif (preg_match('/Linux/i', $userAgent)) $platform = 'Linux';
+            elseif (preg_match('/Android/i', $userAgent)) $platform = 'Android';
+            elseif (preg_match('/iPhone|iPad|iPod/i', $userAgent)) $platform = 'iOS';
+
+            \App\Models\PageVisit::create([
+                'user_id' => auth()->id(),
+                'user_name' => $request->customer_name ?: (auth()->check() ? auth()->user()->name : 'Guest'),
+                'page_name' => 'Quote Submission',
+                'url' => $request->fullUrl(),
+                'manufacturer_name' => $firstProduct && $firstProduct->manufacturer ? $firstProduct->manufacturer->name : null,
+                'product_title' => !empty($productTitles) ? implode(', ', array_slice($productTitles, 0, 2)) : null,
+                'quote_request_id' => $requestNumber,
+                'ip' => $request->ip(),
+                'browser' => $browser,
+                'platform' => $platform,
+            ]);
+            \App\Services\GeoIPService::resolveIp($request->ip());
+        } catch (\Exception $e) {
+            Log::error('Failed recording PageVisit for quote submission: ' . $e->getMessage());
         }
 
         // Send Email Notification to Admin (sales@sparelyx.com)

@@ -18,6 +18,8 @@ use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\ContactMessageController as AdminContactMessageController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 
+use App\Http\Controllers\Admin\AnalyticsController;
+
 /*
 |--------------------------------------------------------------------------
 | Frontend Routes
@@ -58,6 +60,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 */
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('analytics', [AnalyticsController::class, 'index'])->name('analytics.index');
     
     // Modules
     Route::resource('users', AdminUserController::class);

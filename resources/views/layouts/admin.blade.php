@@ -9,6 +9,9 @@
     <!-- Favicon Icon -->
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
 
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -16,18 +19,16 @@
             theme: {
                 extend: {
                     colors: {
-                        sky: {
-                            50: '#E7F4F3',
-                            100: '#cde8e6',
-                            200: '#9bd2ce',
-                            300: '#6abcb6',
-                            400: '#38a59e',
-                            500: '#0F6B66',
-                            600: '#0F6B66',
-                            700: '#0A4744',
-                            800: '#073533',
-                            900: '#042322',
-                            950: '#021413',
+                        primary: {
+                            DEFAULT: '#70B53E',
+                            dark: '#4F8A28',
+                            light: '#F0F7E9',
+                            50: '#F0F7E9',
+                            100: '#DCF0CE',
+                            500: '#70B53E',
+                            600: '#5F9E33',
+                            700: '#4F8A28',
+                            800: '#3D6D1F',
                         },
                         accent: {
                             500: '#F2A541',
@@ -45,20 +46,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* --primary: #0F6B66;
-            --primary-dark: #0A4744; */
             --primary:       #70B53E;
             --primary-dark:  #4F8A28;
-            --primary-light: #E7F4F3;
-            --accent: #F2A541;
-            --accent-dark: #C8811F;
-            --bg: #F6F8FA;
-            --surface: #FFFFFF;
-            --text: #101828;
-            --text-muted: #5B6472;
-            --border: #E1E6EB;
+            --primary-light: #F0F7E9;
+            --accent:        #F2A541;
+            --accent-dark:   #C8811F;
+            --bg:            #F6F8FA;
+            --surface:       #FFFFFF;
+            --text:          #101828;
+            --text-muted:    #5B6472;
+            --border:        #E1E6EB;
         }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); }
+        .bg-admin-primary { background-color: var(--primary) !important; }
+        .bg-admin-dark { background-color: var(--primary-dark) !important; }
+        .text-admin-primary { color: var(--primary) !important; }
+        .text-admin-dark { color: var(--primary-dark) !important; }
+        .border-admin-primary { border-color: var(--primary) !important; }
     </style>
     @stack('styles')
 </head>
@@ -68,63 +72,68 @@
     <aside class="w-64 bg-slate-900 text-slate-300 flex-shrink-0 flex flex-col justify-between border-r border-slate-800">
         <div>
             <!-- Sidebar Header / Logo -->
-            <div class="h-20 bg-[#0A4744] flex items-center px-6 border-b border-slate-800 gap-3">
+            <div class="h-20 bg-[var(--primary-dark)] flex items-center px-6 border-b border-slate-800 gap-3">
                 <img class="h-9 w-auto bg-white p-1 rounded" src="{{ asset('images/logo.png') }}" alt="Sparelyx Logo">
                 <span class="font-extrabold text-white text-base tracking-wide">Admin Panel</span>
             </div>
 
             <!-- Navigation Links -->
             <nav class="p-4 space-y-1.5 font-medium text-xs">
-                <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'bg-[#0F6B66] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-3 rounded-xl transition">
-                    <i class="fa-solid fa-chart-line text-sm w-5 text-center"></i>
+                <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'bg-[var(--primary)] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
+                    <i class="fa-solid fa-gauge-high text-sm w-5 text-center"></i>
                     <span>Dashboard</span>
+                </a>
+
+                <a href="{{ route('admin.analytics.index') }}" class="{{ request()->routeIs('admin.analytics.*') ? 'bg-[var(--primary)] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
+                    <i class="fa-solid fa-chart-line text-sm w-5 text-center"></i>
+                    <span>Visit Analytics</span>
                 </a>
 
                 <div class="pt-3 pb-1 px-4 text-[10px] uppercase font-bold tracking-wider text-slate-500">Catalog Management</div>
 
-                <a href="{{ route('admin.manufacturers.index') }}" class="{{ request()->routeIs('admin.manufacturers.*') ? 'bg-[#0F6B66] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
+                <a href="{{ route('admin.manufacturers.index') }}" class="{{ request()->routeIs('admin.manufacturers.*') ? 'bg-[var(--primary)] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
                     <i class="fa-solid fa-building-flag text-sm w-5 text-center"></i>
                     <span>Manufacturers</span>
                 </a>
 
-                <a href="{{ route('admin.categories.index') }}" class="{{ request()->routeIs('admin.categories.*') ? 'bg-[#0F6B66] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
+                <a href="{{ route('admin.categories.index') }}" class="{{ request()->routeIs('admin.categories.*') ? 'bg-[var(--primary)] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
                     <i class="fa-solid fa-layer-group text-sm w-5 text-center"></i>
                     <span>Categories</span>
                 </a>
 
-                <a href="{{ route('admin.subcategories.index') }}" class="{{ request()->routeIs('admin.subcategories.*') ? 'bg-[#0F6B66] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
+                <a href="{{ route('admin.subcategories.index') }}" class="{{ request()->routeIs('admin.subcategories.*') ? 'bg-[var(--primary)] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
                     <i class="fa-solid fa-sitemap text-sm w-5 text-center"></i>
                     <span>Sub-Categories</span>
                 </a>
 
-                <a href="{{ route('admin.pdfs.index') }}" class="{{ request()->routeIs('admin.pdfs.*') ? 'bg-[#0F6B66] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
+                <a href="{{ route('admin.pdfs.index') }}" class="{{ request()->routeIs('admin.pdfs.*') ? 'bg-[var(--primary)] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
                     <i class="fa-solid fa-file-pdf text-sm w-5 text-center"></i>
                     <span>PDF Module</span>
                 </a>
 
-                <a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.*') ? 'bg-[#0F6B66] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
+                <a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.*') ? 'bg-[var(--primary)] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
                     <i class="fa-solid fa-boxes-stacked text-sm w-5 text-center"></i>
                     <span>Products</span>
                 </a>
 
                 <div class="pt-3 pb-1 px-4 text-[10px] uppercase font-bold tracking-wider text-slate-500">Inquiries & Content</div>
 
-                <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'bg-[#0F6B66] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
+                <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'bg-[var(--primary)] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
                     <i class="fa-solid fa-users text-sm w-5 text-center"></i>
                     <span>Users & Customers</span>
                 </a>
 
-                <a href="{{ route('admin.requests.index') }}" class="{{ request()->routeIs('admin.requests.*') ? 'bg-[#0F6B66] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
+                <a href="{{ route('admin.requests.index') }}" class="{{ request()->routeIs('admin.requests.*') ? 'bg-[var(--primary)] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
                     <i class="fa-solid fa-clipboard-list text-sm w-5 text-center"></i>
                     <span>Product Requests</span>
                 </a>
 
-                <a href="{{ route('admin.pages.index') }}" class="{{ request()->routeIs('admin.pages.*') ? 'bg-[#0F6B66] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
+                <a href="{{ route('admin.pages.index') }}" class="{{ request()->routeIs('admin.pages.*') ? 'bg-[var(--primary)] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
                     <i class="fa-solid fa-file-lines text-sm w-5 text-center"></i>
                     <span>CMS Pages</span>
                 </a>
 
-                <a href="{{ route('admin.contact-messages.index') }}" class="{{ request()->routeIs('admin.contact-messages.*') ? 'bg-[#0F6B66] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
+                <a href="{{ route('admin.contact-messages.index') }}" class="{{ request()->routeIs('admin.contact-messages.*') ? 'bg-[var(--primary)] text-white font-semibold shadow-md' : 'hover:bg-slate-800 text-slate-300' }} flex items-center gap-3 px-4 py-2.5 rounded-xl transition">
                     <i class="fa-solid fa-envelope-open-text text-sm w-5 text-center"></i>
                     <span>Contact Messages</span>
                 </a>
@@ -158,8 +167,8 @@
             </div>
 
             <div class="flex items-center gap-4">
-                <div class="flex items-center gap-2 text-xs font-semibold text-slate-700 bg-sky-50 px-3 py-1.5 rounded-full border border-sky-100">
-                    <i class="fa-solid fa-user-circle text-sky-600 text-base"></i>
+                <div class="flex items-center gap-2 text-xs font-semibold text-slate-700 bg-[var(--primary-light)] px-3 py-1.5 rounded-full border border-[var(--primary)]/20">
+                    <i class="fa-solid fa-user-circle text-[var(--primary-dark)] text-base"></i>
                     <span>{{ auth()->user()->name ?? 'Admin User' }}</span>
                 </div>
             </div>

@@ -12,7 +12,7 @@
             <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Total Products</span>
             <span class="text-3xl font-extrabold text-slate-900">{{ $totalProducts }}</span>
         </div>
-        <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-2xl flex items-center justify-center text-xl">
+        <div class="w-12 h-12 bg-[var(--primary-light)] text-[var(--primary-dark)] rounded-2xl flex items-center justify-center text-xl">
             <i class="fa-solid fa-boxes-stacked"></i>
         </div>
     </div>
@@ -56,7 +56,7 @@
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
         <div class="flex justify-between items-center mb-4">
             <h3 class="font-bold text-slate-900 text-base">Recent Quote Requests</h3>
-            <a href="{{ route('admin.requests.index') }}" class="text-xs font-semibold text-sky-600 hover:underline">View All</a>
+            <a href="{{ route('admin.requests.index') }}" class="text-xs font-semibold text-[var(--primary-dark)] hover:underline">View All</a>
         </div>
 
         @if($recentRequests->count() > 0)
@@ -73,7 +73,7 @@
                     <tbody class="divide-y divide-slate-100">
                         @foreach($recentRequests as $req)
                             <tr>
-                                <td class="p-3 font-mono font-bold text-sky-800">{{ $req->request_number }}</td>
+                                <td class="p-3 font-mono font-bold text-[var(--primary-dark)]">{{ $req->request_number }}</td>
                                 <td class="p-3">
                                     <div class="font-bold text-slate-800">{{ $req->customer_name }}</div>
                                     <div class="text-[10px] text-slate-400">{{ $req->customer_email }}</div>
@@ -88,7 +88,7 @@
                                     </span>
                                 </td>
                                 <td class="p-3 text-right">
-                                    <a href="{{ route('admin.requests.show', $req->id) }}" class="bg-sky-50 text-sky-700 hover:bg-sky-100 px-2.5 py-1 rounded font-semibold text-[11px]">
+                                    <a href="{{ route('admin.requests.show', $req->id) }}" class="bg-[var(--primary-light)] text-[var(--primary-dark)] hover:bg-emerald-100 px-2.5 py-1 rounded font-semibold text-[11px]">
                                         View
                                     </a>
                                 </td>
@@ -106,7 +106,7 @@
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
         <div class="flex justify-between items-center mb-4">
             <h3 class="font-bold text-slate-900 text-base">Latest Added Products</h3>
-            <a href="{{ route('admin.products.index') }}" class="text-xs font-semibold text-sky-600 hover:underline">View Catalog</a>
+            <a href="{{ route('admin.products.index') }}" class="text-xs font-semibold text-[var(--primary-dark)] hover:underline">View Catalog</a>
         </div>
 
         @if($latestProducts->count() > 0)
@@ -124,7 +124,7 @@
                             <tr>
                                 <td class="p-3 font-semibold text-slate-800 line-clamp-1 max-w-[200px]">{{ $prod->name }}</td>
                                 <td class="p-3 text-slate-600">{{ $prod->manufacturer->name ?? 'N/A' }}</td>
-                                <td class="p-3 font-bold text-sky-900">£{{ number_format($prod->price, 2) }}</td>
+                                <td class="p-3 font-bold text-slate-900">£{{ number_format($prod->price, 2) }}</td>
                             </tr>
                         @endforeach
                     </tbody>
