@@ -19,6 +19,15 @@ use App\Http\Controllers\Admin\ContactMessageController as AdminContactMessageCo
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 use App\Http\Controllers\Admin\AnalyticsController;
+use App\Http\Controllers\ExcelImportController;
+
+/*
+|--------------------------------------------------------------------------
+| Import Route (Excel Import from storage/app/imports/products.xlsx)
+|--------------------------------------------------------------------------
+*/
+Route::get('/import-excel-products', [ExcelImportController::class, 'import'])->name('import.excel.products');
+Route::get('/admin/import-excel-products', [ExcelImportController::class, 'import'])->name('admin.import.excel.products');
 
 /*
 |--------------------------------------------------------------------------
