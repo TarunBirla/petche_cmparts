@@ -93,15 +93,21 @@ class ExcelImportController extends Controller
                 $rowData[] = $cell->getValue();
             }
 
-            $productName      = isset($rowData[0]) ? trim((string)$rowData[0]) : '';
-            $categoryName     = isset($rowData[1]) ? trim((string)$rowData[1]) : '';
-            $subCategoryName  = isset($rowData[2]) ? trim((string)$rowData[2]) : '';
-            $manufacturerName = isset($rowData[3]) ? trim((string)$rowData[3]) : '';
-            $description      = isset($rowData[4]) ? trim((string)$rowData[4]) : '';
+            $rawProductName      = isset($rowData[0]) ? trim((string)$rowData[0]) : '';
+            $rawCategoryName     = isset($rowData[1]) ? trim((string)$rowData[1]) : '';
+            $rawSubCategoryName  = isset($rowData[2]) ? trim((string)$rowData[2]) : '';
+            $rawManufacturerName = isset($rowData[3]) ? trim((string)$rowData[3]) : '';
+            $description         = isset($rowData[4]) ? trim((string)$rowData[4]) : '';
 
-            if (empty($productName)) {
+            if (empty($rawProductName)) {
                 continue;
             }
+
+            // Truncate names to safe VARCHAR(255) lengths
+            $productName      = Str::limit($rawProductName, 240, '');
+            $categoryName     = Str::limit($rawCategoryName, 190, '');
+            $subCategoryName  = Str::limit($rawSubCategoryName, 190, '');
+            $manufacturerName = Str::limit($rawManufacturerName, 190, '');
 
             $productNameKey = strtolower($productName);
 
@@ -111,101 +117,139 @@ class ExcelImportController extends Controller
                 continue;
             }
 
-            // 1. Process Category
-            $catId = null;
-            if (!empty($categoryName)) {
-                $catKey = strtolower($categoryName);
-                if (!isset($categories[$catKey])) {
-                    $newCat = Category::create([
-                        'name' => $categoryName,
-                        'slug' => Str::slug($categoryName) . '-' . rand(100, 999),
-                        'is_active' => true,
-                    ]);
-                    $categories[$catKey] = $newCat;
-                    $newCategoriesCount++;
+            try {
+                // 1. Process Category
+                $catId = null;
+                if (!empty($categoryName)) {
+                    $catKey = strtolower($categoryName);
+                    if (!isset($categories[$catKey])) {
+                        $catSlug = Str::limit(Str::slug($categoryName), 180, '') . '-' . rand(100, 999);
+                        if (empty($catSlug) || $catSlug === '-') {
+                            $catSlug = 'cat-' . rand(1000, 9999);
+                        }
+                        $newCat = Category::create([
+                            'name' => $categoryName,
+                            'slug' => $catSlug,
+                            'is_active' => true,
+                        ]);
+                        $categories[$catKey] = $newCat;
+                        $newCategoriesCount++;
+                    }
+                    $catId = $categories[$catKey]->id;
                 }
-                $catId = $categories[$catKey]->id;
-            }
 
-            // 2. Process SubCategory
-            $subCatId = null;
-            if (!empty($subCategoryName) && $catId) {
-                $subCatKey = $catId . '_' . strtolower($subCategoryName);
-                if (!isset($subCategories[$subCatKey])) {
-                    $newSubCat = SubCategory::create([
-                        'category_id' => $catId,
-                        'name' => $subCategoryName,
-                        'slug' => Str::slug($subCategoryName) . '-' . rand(100, 999),
-                        'is_active' => true,
-                    ]);
-                    $subCategories[$subCatKey] = $newSubCat;
-                    $newSubCategoriesCount++;
+                // 2. Process SubCategory
+                $subCatId = null;
+                if (!empty($subCategoryName) && $catId) {
+                    $subCatKey = $catId . '_' . strtolower($subCategoryName);
+                    if (!isset($subCategories[$subCatKey])) {
+                        $subCatSlug = Str::limit(Str::slug($subCategoryName), 180, '') . '-' . rand(100, 999);
+                        if (empty($subCatSlug) || $subCatSlug === '-') {
+                            $subCatSlug = 'subcat-' . rand(1000, 9999);
+                        }
+                        $newSubCat = SubCategory::create([
+                            'category_id' => $catId,
+                            'name' => $subCategoryName,
+                            'slug' => $subCatSlug,
+                            'is_active' => true,
+                        ]);
+                        $subCategories[$subCatKey] = $newSubCat;
+                        $newSubCategoriesCount++;
+                    }
+                    $subCatId = $subCategories[$subCatKey]->id;
                 }
-                $subCatId = $subCategories[$subCatKey]->id;
-            }
 
-            // 3. Process Manufacturer
-            $manufId = null;
-            if (!empty($manufacturerName)) {
-                $manufKey = strtolower($manufacturerName);
-                if (!isset($manufacturers[$manufKey])) {
-                    $newManuf = Manufacturer::create([
-                        'name' => $manufacturerName,
-                        'slug' => Str::slug($manufacturerName) . '-' . rand(100, 999),
-                        'logo' => 'uploads/manufacturers/default.png',
-                        'is_active' => true,
-                    ]);
-                    $manufacturers[$manufKey] = $newManuf;
-                    $newManufacturersCount++;
+                // 3. Process Manufacturer
+                $manufId = null;
+                if (!empty($manufacturerName)) {
+                    $manufKey = strtolower($manufacturerName);
+                    if (!isset($manufacturers[$manufKey])) {
+                        $manufSlug = Str::limit(Str::slug($manufacturerName), 180, '') . '-' . rand(100, 999);
+                        if (empty($manufSlug) || $manufSlug === '-') {
+                            $manufSlug = 'manufacturer-' . rand(1000, 9999);
+                        }
+                        $newManuf = Manufacturer::create([
+                            'name' => $manufacturerName,
+                            'slug' => $manufSlug,
+                            'logo' => 'uploads/manufacturers/default.png',
+                            'is_active' => true,
+                        ]);
+                        $manufacturers[$manufKey] = $newManuf;
+                        $newManufacturersCount++;
+                    }
+                    $manufId = $manufacturers[$manufKey]->id;
                 }
-                $manufId = $manufacturers[$manufKey]->id;
-            }
 
-            // 4. Generate Part Number & Model Number
-            $currentId = $productCounter++;
-            $partNumber = 'PN-' . $currentId;
-            $modelNumber = 'MN-' . $currentId;
+                // 4. Generate Part Number & Model Number
+                $currentId = $productCounter++;
+                $partNumber = 'PN-' . $currentId;
+                $modelNumber = 'MN-' . $currentId;
 
-            // Generate unique slug for product
-            $baseSlug = Str::slug($productName);
-            if (empty($baseSlug)) {
-                $baseSlug = 'product-' . $currentId;
-            }
-            $slug = $baseSlug . '-' . $currentId;
+                // Generate unique slug for product
+                $baseSlug = Str::limit(Str::slug($productName), 180, '');
+                if (empty($baseSlug)) {
+                    $baseSlug = 'product-' . $currentId;
+                }
+                $slug = $baseSlug . '-' . $currentId;
 
-            $summary = !empty($description) ? Str::limit($description, 200) : null;
+                $summary = !empty($description) ? Str::limit($description, 200) : null;
 
-            $productsToInsert[] = [
-                'id'              => $currentId,
-                'name'            => $productName,
-                'slug'            => $slug,
-                'category_id'     => $catId,
-                'sub_category_id' => $subCatId,
-                'manufacturer_id' => $manufId,
-                'part_number'     => $partNumber,
-                'model_number'    => $modelNumber,
-                'summary'         => $summary,
-                'description'     => $description,
-                'quantity'        => 10,
-                'price'           => 0.00,
-                'is_active'       => 1,
-                'created_at'      => $now,
-                'updated_at'      => $now,
-            ];
+                $productsToInsert[] = [
+                    'id'              => $currentId,
+                    'name'            => $productName,
+                    'slug'            => $slug,
+                    'category_id'     => $catId,
+                    'sub_category_id' => $subCatId,
+                    'manufacturer_id' => $manufId,
+                    'part_number'     => $partNumber,
+                    'model_number'    => $modelNumber,
+                    'summary'         => $summary,
+                    'description'     => $description,
+                    'quantity'        => 10,
+                    'price'           => 0.00,
+                    'is_active'       => 1,
+                    'created_at'      => $now,
+                    'updated_at'      => $now,
+                ];
 
-            $existingProductNames[$productNameKey] = true;
-            $newProductsCount++;
+                $existingProductNames[$productNameKey] = true;
+                $newProductsCount++;
 
-            // Batch insert every 500 records
-            if (count($productsToInsert) >= 500) {
-                DB::table('products')->insert($productsToInsert);
-                $productsToInsert = [];
+                // Batch insert every 500 records
+                if (count($productsToInsert) >= 500) {
+                    try {
+                        DB::table('products')->insert($productsToInsert);
+                    } catch (\Exception $exBatch) {
+                        // Fallback: row by row insert if batch fails
+                        foreach ($productsToInsert as $singleProd) {
+                            try {
+                                DB::table('products')->insert($singleProd);
+                            } catch (\Exception $exSingle) {
+                                // Skip offending single product
+                            }
+                        }
+                    }
+                    $productsToInsert = [];
+                }
+            } catch (\Exception $eRow) {
+                // Ignore single row exception and proceed
+                continue;
             }
         }
 
         // Insert remaining batch
         if (!empty($productsToInsert)) {
-            DB::table('products')->insert($productsToInsert);
+            try {
+                DB::table('products')->insert($productsToInsert);
+            } catch (\Exception $exBatch) {
+                foreach ($productsToInsert as $singleProd) {
+                    try {
+                        DB::table('products')->insert($singleProd);
+                    } catch (\Exception $exSingle) {
+                        // Skip offending single product
+                    }
+                }
+            }
         }
 
         $executionTime = round(microtime(true) - $startTime, 2);
