@@ -34,13 +34,13 @@ class ExcelImportController extends Controller
         }
 
         if (!$filePath) {
-            return response()->html("
+            return response("
                 <div style='font-family: sans-serif; padding: 40px; text-align: center;'>
                     <h2 style='color: #e11d48;'>Excel File Not Found</h2>
                     <p>Could not find <code>products.xlsx</code> at <code>storage/app/imports/products.xlsx</code>.</p>
                     <p>Please place your Excel file at: <code>" . storage_path('app/imports/products.xlsx') . "</code></p>
                 </div>
-            ", 404);
+            ", 404, ['Content-Type' => 'text/html']);
         }
 
         $startTime = microtime(true);
@@ -51,12 +51,12 @@ class ExcelImportController extends Controller
             $spreadsheet = $reader->load($filePath);
             $sheet = $spreadsheet->getActiveSheet();
         } catch (\Exception $e) {
-            return response()->html("
+            return response("
                 <div style='font-family: sans-serif; padding: 40px; text-align: center;'>
                     <h2 style='color: #e11d48;'>Error Reading Excel File</h2>
                     <p>" . htmlspecialchars($e->getMessage()) . "</p>
                 </div>
-            ", 500);
+            ", 500, ['Content-Type' => 'text/html']);
         }
 
         // Cache existing entities to minimize DB queries
@@ -258,7 +258,7 @@ class ExcelImportController extends Controller
         $totalSubCategoriesInDb = SubCategory::count();
         $totalManufacturersInDb = Manufacturer::count();
 
-        return response()->html("
+        return response("
         <!DOCTYPE html>
         <html lang='en'>
         <head>
